@@ -1,0 +1,15 @@
+[Desktop Entry]
+Exec=kcmshell5 howdy
+Icon=configure
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-KDE-Library=howdy
+X-KDE-ParentApp=kcontrol
+X-KDE-System-Settings-Parent-Category=display
+X-KDE-Weight=50
+
+Name=Howdy
+
+Comment=Howdy settings
+
+X-KDE-Keywords=Howdy

@@ -1,0 +1,2 @@
+/usr/local/lib/x86_64-linux-gnu/plugins/howdy.so
+/usr/local/share/kservices5/howdy.desktop

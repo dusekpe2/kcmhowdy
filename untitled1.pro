@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
     widget.cpp \
-    main.cpp
+    main.cpp \
+    parser.cpp
 
 HEADERS += \
-    widget.h
+    widget.h \
+    parser.h
 
 FORMS += \
     module.ui \

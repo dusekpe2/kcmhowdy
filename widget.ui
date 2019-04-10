@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
-    <height>291</height>
+    <width>540</width>
+    <height>324</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,54 +18,285 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>428</width>
+     <width>504</width>
      <height>281</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTableView" name="tableView"/>
-    </item>
-    <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="addButton">
-        <property name="text">
-         <string>add</string>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>2</number>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="clearButton">
-        <property name="text">
-         <string>clear</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="configButton">
-        <property name="text">
-         <string>config</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="disableButton">
-        <property name="text">
-         <string>disable</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="enableButton">
-        <property name="text">
-         <string>enable</string>
-        </property>
+        <widget class="QWidget" name="Model">
+         <attribute name="title">
+          <string>Model</string>
+         </attribute>
+         <widget class="QTableView" name="tableView">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>502</width>
+            <height>192</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="disableButton">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>210</y>
+            <width>80</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>disable</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="clearButton">
+          <property name="geometry">
+           <rect>
+            <x>110</x>
+            <y>210</y>
+            <width>80</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>clear</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="enableButton">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>210</y>
+            <width>80</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>enable</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="Add">
+         <attribute name="title">
+          <string>Add</string>
+         </attribute>
+         <widget class="QTextEdit" name="textEdit">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>10</y>
+            <width>341</width>
+            <height>21</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="addButton">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>50</y>
+            <width>95</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>add</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="Config">
+         <attribute name="title">
+          <string>Config</string>
+         </attribute>
+         <widget class="QWidget" name="verticalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>451</width>
+            <height>231</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="labelDetectionNotice">
+               <property name="text">
+                <string>Detection notice</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboDetectionNotice">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="labelNoConfirmation">
+               <property name="text">
+                <string>No confirmation</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboNoConfirmation">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="labelSuppressUnknown">
+               <property name="text">
+                <string>Suppress unknown</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboSuppressUnknown">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="labelIgnoreSsh">
+               <property name="text">
+                <string>Ignore ssh</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboIgnoreSsh">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="labelIgnoreClosedLid">
+               <property name="text">
+                <string>Ignore closed lid</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboIgnoreClosedLid">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="labelUseCnn">
+               <property name="text">
+                <string>Use cnn</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboUseCnn">
+               <item>
+                <property name="text">
+                 <string>true</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>false</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
        </widget>
       </item>
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="buttonSave">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>290</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
   </widget>
  </widget>
  <resources/>

@@ -20,9 +20,15 @@ public Q_SLOTS:
     void handleEnableButton();
     void handleClearButton();
     void handleAddButton();
+    void handleRemoveButton(int id);
 
 private:
     Ui::Widget *ui;
+
+    char* showDialog(QString name, QString message);
+    void startCommand(QString command, QString argument, char *answer);
+    void updateTable();
+
 };
 
 #endif // WIDGET_H

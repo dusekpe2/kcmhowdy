@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "howdy_autogen"
   "CMakeFiles/howdy_autogen.dir/AutogenOldSettings.cmake"
   "CMakeFiles/howdy.dir/howdy.cpp.o"
+  "CMakeFiles/howdy.dir/parser.cpp.o"
+  "CMakeFiles/howdy.dir/widget.cpp.o"
   "CMakeFiles/howdy.dir/howdy_autogen/mocs_compilation.cpp.o"
   "howdy.pdb"
   "howdy.so"

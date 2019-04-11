@@ -54,11 +54,11 @@ CMAKE_BINARY_DIR = /home/petr/untitled1
 include CMakeFiles/fetch-translations.dir/progress.make
 
 CMakeFiles/fetch-translations: releaseme
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/petr/untitled1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Downloading translations for Project branch trunk..."
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/petr/untitled1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Downloading translations for bp branch trunk..."
 	git -C /home/petr/untitled1/releaseme pull
 	cmake -E remove_directory /home/petr/untitled1/po
 	cmake -E remove_directory /home/petr/untitled1/poqm
-	ruby /home/petr/untitled1/releaseme/fetchpo.rb --origin trunk --project Project --output-dir /home/petr/untitled1/po --output-poqm-dir /home/petr/untitled1/poqm /home/petr/untitled1
+	ruby /home/petr/untitled1/releaseme/fetchpo.rb --origin trunk --project bp --output-dir /home/petr/untitled1/po --output-poqm-dir /home/petr/untitled1/poqm /home/petr/untitled1
 
 releaseme:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/petr/untitled1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Fetching releaseme scripts to download translations..."

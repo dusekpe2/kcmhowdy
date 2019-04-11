@@ -20,7 +20,9 @@ FIND_PACKAGE(KF5 COMPONENTS DocTools)
 
 SET(kmsettings_PART_SRCS
       howdy.cpp
-      module.ui
+      parser.cpp
+      widget.cpp
+      widget.ui
       )
 
 QT5_ADD_RESOURCES(kcm_kmsettings_RCC_SRCS ${kmsettings_RCCS})
@@ -32,6 +34,7 @@ TARGET_LINK_LIBRARIES( howdy
                        ${SYNNEFO_LIBRARIES}
                        Qt5::Core
                        Qt5::Widgets
+		       KF5::WidgetsAddons
                      )
 
 INSTALL(TARGETS howdy          DESTINATION ${PLUGIN_INSTALL_DIR})

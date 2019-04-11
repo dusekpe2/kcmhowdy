@@ -364,6 +364,60 @@ howdy_autogen/mocs_compilation.cpp.s:
 	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/howdy_autogen/mocs_compilation.cpp.s
 .PHONY : howdy_autogen/mocs_compilation.cpp.s
 
+parser.o: parser.cpp.o
+
+.PHONY : parser.o
+
+# target to build an object file
+parser.cpp.o:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/parser.cpp.o
+.PHONY : parser.cpp.o
+
+parser.i: parser.cpp.i
+
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.cpp.i:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/parser.cpp.i
+.PHONY : parser.cpp.i
+
+parser.s: parser.cpp.s
+
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.cpp.s:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/parser.cpp.s
+.PHONY : parser.cpp.s
+
+widget.o: widget.cpp.o
+
+.PHONY : widget.o
+
+# target to build an object file
+widget.cpp.o:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/widget.cpp.o
+.PHONY : widget.cpp.o
+
+widget.i: widget.cpp.i
+
+.PHONY : widget.i
+
+# target to preprocess a source file
+widget.cpp.i:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/widget.cpp.i
+.PHONY : widget.cpp.i
+
+widget.s: widget.cpp.s
+
+.PHONY : widget.s
+
+# target to generate assembly for a file
+widget.cpp.s:
+	$(MAKE) -f CMakeFiles/howdy.dir/build.make CMakeFiles/howdy.dir/widget.cpp.s
+.PHONY : widget.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -394,6 +448,12 @@ help:
 	@echo "... howdy_autogen/mocs_compilation.o"
 	@echo "... howdy_autogen/mocs_compilation.i"
 	@echo "... howdy_autogen/mocs_compilation.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
+	@echo "... widget.o"
+	@echo "... widget.i"
+	@echo "... widget.s"
 .PHONY : help
 
 

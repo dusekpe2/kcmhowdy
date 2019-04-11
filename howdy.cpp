@@ -12,36 +12,15 @@ K_PLUGIN_FACTORY(howdyConfigFactory, registerPlugin<Howdy>();)
 using namespace std;
 
 Howdy::Howdy(QWidget *parent, const QVariantList &args) :
-    KCModule(parent, args),
-    ui(new Ui::module)
+    KCModule(parent, args)
 {
-    ui->setupUi(this);
+    mMainLayout = new QHBoxLayout(this);
+    mMainLayout->setContentsMargins(0, 0, 0, 0);
 
-    QString dpkg_command = "pkexec sudo howdy list";
-    QProcess *myProcess = new QProcess(this);
-    myProcess->start(dpkg_command);
-    myProcess->waitForFinished();
-
-    QString output(myProcess->readAllStandardOutput());
-
-    QStringList list = output.split("\n", QString::SkipEmptyParts);
-
-       QTextStream out(stdout);
-//       out<<list.at(1);
-
-    QStandardItemModel *myModel = new QStandardItemModel(0, 0, this);
-
-
-    for(int i=2; i< list.size(); i++){
-        QStandardItem *item = new QStandardItem(list.at(i));
-        myModel->setItem(i-2,0, item);
+    if (!m_HowdyWidget) {
+        m_HowdyWidget = new Widget(this);
+         mMainLayout->addWidget(m_HowdyWidget);
     }
-    ui->tableView->setModel(myModel);
-    ui->tableView->setColumnWidth(0,400);
-    myModel->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-
-    connect(ui->disableButton, SIGNAL(clicked()), this, SLOT(handleDisableButton()));
-    connect(ui->enableButton, SIGNAL(clicked()), this, SLOT(handleEnableButton()));
 }
 
 Howdy::~Howdy()
@@ -61,26 +40,19 @@ void Howdy::load()
 
 void Howdy::defaults()
 {
-    system("gedit ahoj");
+
 }
+
 
 QString Howdy::quickHelp() const
 {
-    return "Ahoj";
+    return "Ahoj toto je quickhelp";
 }
 
-void Howdy::handleDisableButton()
+bool Howdy::apply()
 {
-    QString dpkg_command = "pkexec sudo howdy disable 1";
-    QProcess *myProcess = new QProcess(this);
-    myProcess->start(dpkg_command);
+    return true;
 }
 
-void Howdy::handleEnableButton()
-{
-    QString dpkg_command = "pkexec sudo howdy disable 0";
-    QProcess *myProcess = new QProcess(this);
-    myProcess->start(dpkg_command);
-}
 
 #include "howdy.moc"

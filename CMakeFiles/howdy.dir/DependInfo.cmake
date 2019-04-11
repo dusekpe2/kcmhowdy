@@ -6,6 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/petr/untitled1/howdy.cpp" "/home/petr/untitled1/CMakeFiles/howdy.dir/howdy.cpp.o"
   "/home/petr/untitled1/howdy_autogen/mocs_compilation.cpp" "/home/petr/untitled1/CMakeFiles/howdy.dir/howdy_autogen/mocs_compilation.cpp.o"
+  "/home/petr/untitled1/parser.cpp" "/home/petr/untitled1/CMakeFiles/howdy.dir/parser.cpp.o"
+  "/home/petr/untitled1/widget.cpp" "/home/petr/untitled1/CMakeFiles/howdy.dir/widget.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

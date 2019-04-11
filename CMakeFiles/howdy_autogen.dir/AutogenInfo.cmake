@@ -10,7 +10,7 @@ set(AM_CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE "ON")
 set(AM_BUILD_DIR "/home/petr/untitled1/howdy_autogen")
 set(AM_INCLUDE_DIR "include")
 # Files
-set(AM_SOURCES "/home/petr/untitled1/howdy.cpp")
+set(AM_SOURCES "/home/petr/untitled1/howdy.cpp;/home/petr/untitled1/parser.cpp;/home/petr/untitled1/widget.cpp")
 set(AM_HEADERS "")
 set(AM_SETTINGS_FILE "/home/petr/untitled1/CMakeFiles/howdy_autogen.dir/AutogenOldSettings.txt")
 # Qt

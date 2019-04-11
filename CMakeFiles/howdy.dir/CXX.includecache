@@ -33,6 +33,14 @@ QWidget
 -
 KCModule
 -
+QHBoxLayout
+-
+widget.h
+/home/petr/untitled1/widget.h
+
+/home/petr/untitled1/widget.h
+QWidget
+-
 
 /usr/include/KF5/KAuth/kauth_export.h
 

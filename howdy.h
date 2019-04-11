@@ -2,9 +2,10 @@
 #define MODULE_H
 
 #include <QString>
-
 #include <QWidget>
 #include <KCModule>
+#include <QHBoxLayout>
+#include "widget.h"
 
 namespace Ui {
 class module;
@@ -23,12 +24,12 @@ public Q_SLOTS:
     void save() override;
     void load() override;
     void defaults() override;
-    void handleDisableButton();
-    void handleEnableButton();
-
 
 private:
-    Ui::module *ui;
+    Widget *m_HowdyWidget = nullptr;
+    QHBoxLayout *mMainLayout = nullptr;
+
+    bool apply();
 };
 
 #endif // MODULE_H

@@ -18,20 +18,18 @@ FIND_PACKAGE(KF5CoreAddons REQUIRED)
 FIND_PACKAGE(KF5I18n REQUIRED)
 FIND_PACKAGE(KF5 COMPONENTS DocTools)
 
-SET(kmsettings_PART_SRCS
+SET(howdy_SRCS
       howdy.cpp
       parser.cpp
       widget.cpp
       widget.ui
       )
 
-QT5_ADD_RESOURCES(kcm_kmsettings_RCC_SRCS ${kmsettings_RCCS})
-ADD_LIBRARY( howdy MODULE ${kmsettings_PART_SRCS} )
-TARGET_LINK_LIBRARIES( howdy
+ADD_LIBRARY( howdy MODULE ${howdy_SRCS} )
+target_link_LIBRARIES( howdy
                        KF5::CoreAddons
                        KF5::ConfigWidgets
                        KF5::I18n
-                       ${SYNNEFO_LIBRARIES}
                        Qt5::Core
                        Qt5::Widgets
 		       KF5::WidgetsAddons

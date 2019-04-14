@@ -32,10 +32,13 @@ public:
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
     QWidget *Model;
+    QWidget *verticalLayoutWidget_3;
+    QVBoxLayout *verticalLayout_3;
     QTableView *tableView;
-    QPushButton *disableButton;
-    QPushButton *clearButton;
+    QHBoxLayout *horizontalLayout_8;
     QPushButton *enableButton;
+    QPushButton *clearButton;
+    QPushButton *disableButton;
     QWidget *Add;
     QTextEdit *textEdit;
     QPushButton *addButton;
@@ -66,10 +69,10 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QStringLiteral("Widget"));
-        Widget->resize(540, 324);
+        Widget->resize(584, 346);
         verticalLayoutWidget = new QWidget(Widget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(0, 0, 504, 281));
+        verticalLayoutWidget->setGeometry(QRect(0, 0, 521, 281));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -79,18 +82,37 @@ public:
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         Model = new QWidget();
         Model->setObjectName(QStringLiteral("Model"));
-        tableView = new QTableView(Model);
+        verticalLayoutWidget_3 = new QWidget(Model);
+        verticalLayoutWidget_3->setObjectName(QStringLiteral("verticalLayoutWidget_3"));
+        verticalLayoutWidget_3->setGeometry(QRect(-10, 0, 511, 231));
+        verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        tableView = new QTableView(verticalLayoutWidget_3);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(0, 10, 502, 192));
-        disableButton = new QPushButton(Model);
-        disableButton->setObjectName(QStringLiteral("disableButton"));
-        disableButton->setGeometry(QRect(10, 210, 80, 23));
-        clearButton = new QPushButton(Model);
-        clearButton->setObjectName(QStringLiteral("clearButton"));
-        clearButton->setGeometry(QRect(110, 210, 80, 23));
-        enableButton = new QPushButton(Model);
+
+        verticalLayout_3->addWidget(tableView);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        enableButton = new QPushButton(verticalLayoutWidget_3);
         enableButton->setObjectName(QStringLiteral("enableButton"));
-        enableButton->setGeometry(QRect(210, 210, 80, 23));
+
+        horizontalLayout_8->addWidget(enableButton);
+
+        clearButton = new QPushButton(verticalLayoutWidget_3);
+        clearButton->setObjectName(QStringLiteral("clearButton"));
+
+        horizontalLayout_8->addWidget(clearButton);
+
+        disableButton = new QPushButton(verticalLayoutWidget_3);
+        disableButton->setObjectName(QStringLiteral("disableButton"));
+
+        horizontalLayout_8->addWidget(disableButton);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_8);
+
         tabWidget->addTab(Model, QString());
         Add = new QWidget();
         Add->setObjectName(QStringLiteral("Add"));
@@ -233,9 +255,9 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Form", nullptr));
-        disableButton->setText(QApplication::translate("Widget", "disable", nullptr));
-        clearButton->setText(QApplication::translate("Widget", "clear", nullptr));
         enableButton->setText(QApplication::translate("Widget", "enable", nullptr));
+        clearButton->setText(QApplication::translate("Widget", "clear", nullptr));
+        disableButton->setText(QApplication::translate("Widget", "disable", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Model), QApplication::translate("Widget", "Model", nullptr));
         addButton->setText(QApplication::translate("Widget", "add", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Add), QApplication::translate("Widget", "Add", nullptr));

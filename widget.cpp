@@ -8,6 +8,7 @@
 #include <parser.h>
 #include <QPushButton>
 #include <QSignalMapper>
+#include <QFile>
 
 using namespace std;
 
@@ -16,8 +17,8 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
-    this->updateTable();
+    readFile();
+    updateTable();
     connect(ui->disableButton, SIGNAL(clicked()), this, SLOT(handleDisableButton()));
     connect(ui->enableButton, SIGNAL(clicked()), this, SLOT(handleEnableButton()));
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(handleClearButton()));
@@ -47,8 +48,8 @@ void Widget::handleClearButton()
 {
      char *answer = this->showDialog("Clear", "Remove all models?");
 
-     this->startCommand("pkexec sudo howdy clear", "", answer);
-    this->updateTable();
+     startCommand("pkexec sudo howdy clear", "", answer);
+    updateTable();
 }
 
 void Widget::handleAddButton()
@@ -64,8 +65,8 @@ void Widget::handleRemoveButton(int id)
 {
      char *answer = this->showDialog("Remove", "Remove model with id " + QString::number(id) + "?");
 
-     this->startCommand("pkexec sudo howdy remove", QString::number(id), answer);
-     this->updateTable();
+     startCommand("pkexec sudo howdy remove", QString::number(id), answer);
+     updateTable();
 }
 
 char* Widget::showDialog(QString name, QString message)
@@ -125,13 +126,12 @@ void Widget::updateTable()
             QStandardItem *id = new QStandardItem(p.getId());
             QStandardItem *date = new QStandardItem(p.getDate());
             QStandardItem *name = new QStandardItem(p.getName());
-            QStandardItem *help = new QStandardItem(QString(""));
+            QStandardItem *remove = new QStandardItem(QString(""));
             myModel->setItem(i-2,0, id);
             myModel->setItem(i-2,1, date);
             myModel->setItem(i-2,2, name);
-            myModel->setItem(i-2,3, help);
+            myModel->setItem(i-2,3, remove);
         }
-
 
         ui->tableView->setModel(myModel);
         ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -152,6 +152,31 @@ void Widget::updateTable()
         myModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Date"));
         myModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Label"));
         myModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Delete"));
+}
+
+void Widget::readFile()
+{
+    QFile file("/lib/security/howdy/config.ini");
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+    QTextStream in(&file);
+    QTextStream out(stdout);
+    QString line = in.readLine();
+    while(!in.atEnd()) {
+        if(!line.isEmpty()){
+            if(line.at(0) != "["){
+                QStringList fields = line.split(" = ");
+                out<<fields.at(0)<<"."<<endl;
+                out<<"."<<fields.at(1)<<"."<<endl;
+            }
+        }
+        line = in.readLine();
+
+    }
+
+    file.close();
+
 }
 
 

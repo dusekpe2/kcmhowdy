@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Howdy_t {
     QByteArrayData data[5];
-    char stringdata0[26];
+    char stringdata0[25];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,10 @@ QT_MOC_LITERAL(0, 0, 5), // "Howdy"
 QT_MOC_LITERAL(1, 6, 4), // "save"
 QT_MOC_LITERAL(2, 11, 0), // ""
 QT_MOC_LITERAL(3, 12, 4), // "load"
-QT_MOC_LITERAL(4, 17, 8) // "defaults"
+QT_MOC_LITERAL(4, 17, 7) // "changed"
 
     },
-    "Howdy\0save\0\0load\0defaults"
+    "Howdy\0save\0\0load\0changed"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +76,7 @@ void Howdy::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         switch (_id) {
         case 0: _t->save(); break;
         case 1: _t->load(); break;
-        case 2: _t->defaults(); break;
+        case 2: _t->changed(); break;
         default: ;
         }
     }

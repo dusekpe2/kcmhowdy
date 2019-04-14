@@ -6,10 +6,13 @@
 #include <KCModule>
 #include <QHBoxLayout>
 #include "widget.h"
+#include <KSharedConfig>
 
 namespace Ui {
 class module;
 }
+
+
 
 class Howdy : public KCModule
 {
@@ -19,15 +22,19 @@ public:
     explicit Howdy(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
     ~Howdy();
 
+    QSize sizeHint() const override;
+
     QString quickHelp() const;
 public Q_SLOTS:
     void save() override;
     void load() override;
-    void defaults() override;
+    void changed();
 
 private:
     Widget *m_HowdyWidget = nullptr;
     QHBoxLayout *mMainLayout = nullptr;
+    bool mDataChanged = false;
+    KSharedConfigPtr mHowdyConfig;
 
     bool apply();
 };

@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets KConfigCore KConfigGui
 
 TARGET = untitled1
 TEMPLATE = app
@@ -28,12 +28,12 @@ SOURCES += \
     widget.cpp \
     main.cpp \
     parser.cpp \
-    howdy.cpp
+    config.cpp
 
 HEADERS += \
     widget.h \
     parser.h \
-    howdy.h
+    config.h
 FORMS += \
     module.ui \
     widget.ui

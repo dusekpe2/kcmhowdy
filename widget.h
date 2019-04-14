@@ -28,6 +28,7 @@ private:
     char* showDialog(QString name, QString message);
     void startCommand(QString command, QString argument, char *answer);
     void updateTable();
+    void readFile();
 
 };
 

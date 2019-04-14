@@ -5,11 +5,13 @@ Type=Service
 X-KDE-ServiceTypes=KCModule
 X-KDE-Library=howdy
 X-KDE-ParentApp=kcontrol
-X-KDE-System-Settings-Parent-Category=display
+X-KDE-System-Settings-Parent-Category=accountdetails
 X-KDE-Weight=50
 
 Name=Howdy
 
 Comment=Howdy settings
 
-X-KDE-Keywords=Howdy
+X-KDE-Keywords]=howdy,face recognition
+X-KDE-Keywords[cs]=howdy,správce odemykani oblicejem
+

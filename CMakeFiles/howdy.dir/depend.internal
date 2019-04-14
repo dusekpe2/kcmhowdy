@@ -7,6 +7,15 @@ CMakeFiles/howdy.dir/howdy.cpp.o
  /home/petr/untitled1/widget.h
  /usr/include/KF5/KAuth/kauth_export.h
  /usr/include/KF5/KAuth/kauthaction.h
+ /usr/include/KF5/KConfigCore/KConfig
+ /usr/include/KF5/KConfigCore/KConfigGroup
+ /usr/include/KF5/KConfigCore/KSharedConfig
+ /usr/include/KF5/KConfigCore/conversioncheck.h
+ /usr/include/KF5/KConfigCore/kconfig.h
+ /usr/include/KF5/KConfigCore/kconfigbase.h
+ /usr/include/KF5/KConfigCore/kconfigcore_export.h
+ /usr/include/KF5/KConfigCore/kconfiggroup.h
+ /usr/include/KF5/KConfigCore/ksharedconfig.h
  /usr/include/KF5/KConfigWidgets/KCModule
  /usr/include/KF5/KConfigWidgets/kcmodule.h
  /usr/include/KF5/KConfigWidgets/kconfigwidgets_export.h
@@ -16,15 +25,31 @@ CMakeFiles/howdy.dir/howdy.cpp.o
  /usr/include/KF5/KCoreAddons/kcoreaddons_export.h
  /usr/include/KF5/KCoreAddons/kexportplugin.h
  /usr/include/KF5/KCoreAddons/kpluginfactory.h
+ /usr/include/KF5/KI18n/KLocalizedString
+ /usr/include/KF5/KI18n/ki18n_export.h
+ /usr/include/KF5/KI18n/klocalizedstring.h
+ /usr/include/KF5/KI18n/kuitmarkup.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QByteArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QChar
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QDate
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QDir
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QExplicitlySharedDataPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QHash
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QLatin1Char
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QPluginLoader
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QPoint
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QProcess
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QRect
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QSet
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedDataPointer
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QSize
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTextStream
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QtGlobal
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QtPlugin
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h
@@ -45,10 +70,13 @@ CMakeFiles/howdy.dir/howdy.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdir.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfileinfo.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h
@@ -92,6 +120,7 @@ CMakeFiles/howdy.dir/howdy.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstandardpaths.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringbuilder.h
@@ -185,13 +214,22 @@ CMakeFiles/howdy.dir/howdy_autogen/mocs_compilation.cpp.o
  /home/petr/untitled1/widget.h
  /usr/include/KF5/KAuth/kauth_export.h
  /usr/include/KF5/KAuth/kauthaction.h
+ /usr/include/KF5/KConfigCore/KSharedConfig
+ /usr/include/KF5/KConfigCore/kconfig.h
+ /usr/include/KF5/KConfigCore/kconfigbase.h
+ /usr/include/KF5/KConfigCore/kconfigcore_export.h
+ /usr/include/KF5/KConfigCore/ksharedconfig.h
  /usr/include/KF5/KConfigWidgets/KCModule
  /usr/include/KF5/KConfigWidgets/kcmodule.h
  /usr/include/KF5/KConfigWidgets/kconfigwidgets_export.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QByteArray
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QExplicitlySharedDataPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QHash
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QList
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedDataPointer
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QtGlobal
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h
@@ -246,6 +284,7 @@ CMakeFiles/howdy.dir/howdy_autogen/mocs_compilation.cpp.o
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstandardpaths.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringbuilder.h
@@ -373,6 +412,7 @@ CMakeFiles/howdy.dir/parser.cpp.o
 CMakeFiles/howdy.dir/widget.cpp.o
  /home/petr/untitled1/widget.cpp
  /home/petr/untitled1/widget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QProcess
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSignalMapper
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString

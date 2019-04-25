@@ -1,5 +1,4 @@
 #include "howdy.h"
-#include "ui_module.h"
 #include <KPluginFactory>
 #include <KAboutData>
 #include <QStandardItemModel>
@@ -48,6 +47,7 @@ Howdy::Howdy(QWidget *parent, const QVariantList &args) :
         m_HowdyWidget = new Widget(this);
          mMainLayout->addWidget(m_HowdyWidget);
     }
+    connect(m_HowdyWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
 }
 
 Howdy::~Howdy()
@@ -57,6 +57,8 @@ Howdy::~Howdy()
 
 void Howdy::save()
 {
+
+    m_HowdyWidget->save();
 //    QVariantMap args;
 
 //    args[QStringLiteral("howdy.conf")] = QLatin1String("@HOWDY_CONFIG_FILE@");
@@ -74,7 +76,7 @@ void Howdy::save()
 
 void Howdy::load()
 {
-
+    m_HowdyWidget->loadDefaults();
 }
 
 QString Howdy::quickHelp() const
@@ -87,13 +89,6 @@ bool Howdy::apply()
     return true;
 }
 
-void Howdy::changed()
-{
-    if(mDataChanged){
-        KCModule::changed();
-    }
-
-}
 
 QSize Howdy::sizeHint() const
 {

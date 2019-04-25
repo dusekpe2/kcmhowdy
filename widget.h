@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <config.h>
 
 namespace Ui {
 class Widget;
@@ -14,6 +15,8 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
+    void loadDefaults();
+    void save();
 
 public Q_SLOTS:
     void handleDisableButton();
@@ -21,10 +24,13 @@ public Q_SLOTS:
     void handleClearButton();
     void handleAddButton();
     void handleRemoveButton(int id);
+    void hasChanged();
 
+    Q_SIGNALS:
+    void changed(bool state);
 private:
     Ui::Widget *ui;
-
+    Config *mConfig;
     char* showDialog(QString name, QString message);
     void startCommand(QString command, QString argument, char *answer);
     void updateTable();

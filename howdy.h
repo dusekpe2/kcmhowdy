@@ -8,18 +8,13 @@
 #include "widget.h"
 #include <KSharedConfig>
 
-namespace Ui {
-class module;
-}
-
-
 
 class Howdy : public KCModule
 {
     Q_OBJECT
 
 public:
-    explicit Howdy(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+    explicit Howdy(QWidget *parent, const QVariantList &args);
     ~Howdy();
 
     QSize sizeHint() const override;
@@ -28,7 +23,6 @@ public:
 public Q_SLOTS:
     void save() override;
     void load() override;
-    void changed();
 
 private:
     Widget *m_HowdyWidget = nullptr;

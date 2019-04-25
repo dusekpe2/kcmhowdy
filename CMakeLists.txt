@@ -23,7 +23,11 @@ SET(howdy_SRCS
       parser.cpp
       widget.cpp
       widget.ui
+      config.cpp
+      config.ui
       )
+SET(PLUGIN_INSTALL_DIR "/usr/lib/x86_64-linux-gnu/qt5/plugins")
+SET(SERVICES_INSTALL_DIR "/usr/share/kservices5")
 
 ADD_LIBRARY( howdy MODULE ${howdy_SRCS} )
 target_link_LIBRARIES( howdy

@@ -8,26 +8,56 @@
 #include <parser.h>
 #include <QPushButton>
 #include <QSignalMapper>
-#include <QFile>
+#include <QDebug>
 
 using namespace std;
+
+
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    readFile();
+
+    mConfig = new Config(this);
+
+    QVBoxLayout *layout = new QVBoxLayout();
+    ui->Config->setLayout(layout);
+    layout->addWidget(mConfig);
+
+
     updateTable();
+
+//    connect(ui->comboDetectionNotice, SIGNAL(currentTextChanged(QString)), this, SLOT(comboBoxChanged(QString)));
+
+    connect(ui->textEdit, SIGNAL(textChanged()), this, SLOT(hasChanged()));
     connect(ui->disableButton, SIGNAL(clicked()), this, SLOT(handleDisableButton()));
     connect(ui->enableButton, SIGNAL(clicked()), this, SLOT(handleEnableButton()));
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(handleClearButton()));
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(handleAddButton()));
+
+    connect(mConfig, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::hasChanged()
+{
+    Q_EMIT changed(true);
+}
+
+void Widget::save()
+{
+    mConfig->save();
+}
+
+void Widget::loadDefaults()
+{
+    ui->textEdit->setText("");
 }
 
 void Widget::handleDisableButton()
@@ -153,30 +183,4 @@ void Widget::updateTable()
         myModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Label"));
         myModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Delete"));
 }
-
-void Widget::readFile()
-{
-    QFile file("/lib/security/howdy/config.ini");
-    if(!file.open(QIODevice::ReadOnly)) {
-        QMessageBox::information(0, "error", file.errorString());
-    }
-    QTextStream in(&file);
-    QTextStream out(stdout);
-    QString line = in.readLine();
-    while(!in.atEnd()) {
-        if(!line.isEmpty()){
-            if(line.at(0) != "["){
-                QStringList fields = line.split(" = ");
-                out<<fields.at(0)<<"."<<endl;
-                out<<"."<<fields.at(1)<<"."<<endl;
-            }
-        }
-        line = in.readLine();
-
-    }
-
-    file.close();
-
-}
-
 

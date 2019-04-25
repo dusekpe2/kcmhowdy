@@ -28,15 +28,17 @@ SOURCES += \
     widget.cpp \
     main.cpp \
     parser.cpp \
-    config.cpp
+    config.cpp \
+    howdy.cpp
 
 HEADERS += \
     widget.h \
     parser.h \
-    config.h
+    config.h \
+    howdy.h
 FORMS += \
-    module.ui \
-    widget.ui
+    widget.ui \
+    config.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

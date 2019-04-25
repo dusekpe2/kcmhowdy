@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigForm</class>
+ <widget class="QWidget" name="ConfigForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>812</width>
+    <height>854</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaGroups">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>392</width>
+        <height>834</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridGroups">
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <item row="2" column="1">
+          <widget class="QGroupBox" name="debugGroup">
+           <property name="title">
+            <string>Debug</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelEndReport">
+              <property name="text">
+               <string>End report</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboEndReport">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QGroupBox" name="coreGroup">
+           <property name="title">
+            <string>Core</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelDetectionNotice">
+              <property name="text">
+               <string>Detection notice</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboDetectionNotice">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelIgnoreClosedLid">
+              <property name="text">
+               <string>Ignore closed lid</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboIgnoreClosedLid">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelIgnoreSsh">
+              <property name="text">
+               <string>Ignore ssh</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="comboIgnoreSsh">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelNoConfirmation">
+              <property name="text">
+               <string>No confirmation</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboNoConfirmation">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelSuppressUknown">
+              <property name="text">
+               <string>Suppress unknown</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QComboBox" name="comboSuppressUnknown">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelUseCnn">
+              <property name="text">
+               <string>Use cnn</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QComboBox" name="comboUseCnn">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QGroupBox" name="videoGroup">
+           <property name="title">
+            <string>Video</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelDarkThreshold">
+              <property name="text">
+               <string>Dark threshold</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelCertainty">
+              <property name="text">
+               <string>Certainty</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="labelRecordingPlugin">
+              <property name="text">
+               <string>Recording plugin</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelForceMjpeg">
+              <property name="text">
+               <string>Force mjpeg</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="labelFrameHeight">
+              <property name="text">
+               <string>Frame height</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelExposure">
+              <property name="text">
+               <string>Exposure</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelDeviceFormat">
+              <property name="text">
+               <string>Device format</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="labelTimeout">
+              <property name="text">
+               <string>Timeout</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelDevicePath">
+              <property name="text">
+               <string>Device path</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="labelMaxHeight">
+              <property name="text">
+               <string>Max height</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="labelFrameWidth">
+              <property name="text">
+               <string>Frame width</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="1">
+             <widget class="QSpinBox" name="spinTimeout"/>
+            </item>
+            <item row="9" column="1">
+             <widget class="QComboBox" name="comboRecordingPlugin"/>
+            </item>
+            <item row="8" column="1">
+             <widget class="QSpinBox" name="spinMaxHeight">
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QSpinBox" name="spinFrameWidth">
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QSpinBox" name="spinFrameHeight">
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QComboBox" name="comboForceMjpeg">
+              <item>
+               <property name="text">
+                <string>true</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>false</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QSpinBox" name="spinExposure"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboDevicePath"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="comboDeviceFormat"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinDarkThreshold"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="spinCertainty"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

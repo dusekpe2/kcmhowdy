@@ -11,7 +11,6 @@ public:
     QString getDate();
     QString getName();
 private:
-    QString m_String;
     QString m_Id;
     QString m_Date;
     QString m_Name;

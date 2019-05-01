@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets KConfigCore KConfigGui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets KConfigCore KConfigGui multimedia KAuth
 
 TARGET = untitled1
 TEMPLATE = app
@@ -29,16 +29,17 @@ SOURCES += \
     main.cpp \
     parser.cpp \
     config.cpp \
-    howdy.cpp
+    model.cpp
 
 HEADERS += \
     widget.h \
     parser.h \
     config.h \
-    howdy.h
+    model.h
 FORMS += \
     widget.ui \
-    config.ui
+    config.ui \
+    model.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

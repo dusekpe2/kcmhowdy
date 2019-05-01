@@ -25,10 +25,8 @@ public Q_SLOTS:
     void load() override;
 
 private:
-    Widget *m_HowdyWidget = nullptr;
+    Widget *mHowdyWidget = nullptr;
     QHBoxLayout *mMainLayout = nullptr;
-    bool mDataChanged = false;
-    KSharedConfigPtr mHowdyConfig;
 
     bool apply();
 };

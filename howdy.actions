@@ -1,0 +1,5 @@
+[org.kde.kcontrol.howdy.command]
+Name=Example action
+Description=The system is attempting to perform the example action
+Policy=auth_admin
+Persistence=session

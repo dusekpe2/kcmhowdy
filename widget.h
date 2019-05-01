@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <config.h>
+#include "model.h"
 
 namespace Ui {
 class Widget;
@@ -15,15 +16,11 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
-    void loadDefaults();
+    void load();
     void save();
 
 public Q_SLOTS:
-    void handleDisableButton();
-    void handleEnableButton();
-    void handleClearButton();
     void handleAddButton();
-    void handleRemoveButton(int id);
     void hasChanged();
 
     Q_SIGNALS:
@@ -31,11 +28,7 @@ public Q_SLOTS:
 private:
     Ui::Widget *ui;
     Config *mConfig;
-    char* showDialog(QString name, QString message);
-    void startCommand(QString command, QString argument, char *answer);
-    void updateTable();
-    void readFile();
-
+    Model *mModel;
 };
 
 #endif // WIDGET_H

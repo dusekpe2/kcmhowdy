@@ -1,0 +1,6 @@
+/usr/lib/x86_64-linux-gnu/qt5/plugins/howdy.so
+/usr/share/kservices5/howdy.desktop
+/usr/share/polkit-1/actions/org.kde.kcontrol.howdy.policy
+/usr/local/etc/dbus-1/system.d/org.kde.kcontrol.howdy.conf
+/usr/local/share/dbus-1/system-services/org.kde.kcontrol.howdy.service
+/usr/local/lib/kauth/libexec/howdy_authhelper

@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <KCModule>
 #include "widget.h"
+#include "model.h"
 
 int main(int argc, char *argv[])
 {

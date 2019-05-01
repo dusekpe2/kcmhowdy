@@ -17,71 +17,48 @@ using namespace std;
 Howdy::Howdy(QWidget *parent, const QVariantList &args) :
     KCModule(parent, args)
 {
-    KAboutData* aboutData = new KAboutData(QStringLiteral("kcmsddm"), i18n("SDDM KDE Config"), QLatin1String("neco"));
 
-    aboutData->setShortDescription(i18n("Login screen using the SDDM"));
-    aboutData->setLicense(KAboutLicense::GPL_V2);
-    aboutData->setHomepage(QStringLiteral("https://projects.kde.org/projects/kde/workspace/sddm-kcm"));
+    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),
+                                       i18n("KDE howdy control module"),
+                                       QStringLiteral(""),
+                                       QString(),
+                                       KAboutLicense::GPL,
+                                       i18n("(c) 2019 Petr Dusek"));
 
-    aboutData->addAuthor(QStringLiteral("Reza Fatahilah Shah"), i18n("Author"), QStringLiteral("rshah0385@kireihana.com"));
-
+    aboutData->addAuthor(i18n("Petr Dusek"),
+                     QString(),
+                     QStringLiteral("dusekpe2@fit.cvut.cz"));
     setAboutData(aboutData);
-
-    mHowdyConfig = KSharedConfig::openConfig(QStringLiteral("@HOWDY_CONFIG_FILE@"), KConfig::CascadeConfig);
-
-    QStringList configFiles = QDir(QLatin1String("@HOWDY_CONFIG_DIR@")).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::LocaleAware),
-                systemConfigFiles = QDir(QLatin1String("@HOWDY_SYSTEM_CONFIG_DIR@")).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::LocaleAware);
-
-    transform(systemConfigFiles.begin(), systemConfigFiles.end(), systemConfigFiles.begin(),
-                    [](const QString &filename) -> QString { return QStringLiteral("@HOWDY_SYSTEM_CONFIG_DIR@" "/") + filename; });
-    transform(configFiles.begin(), configFiles.end(), configFiles.begin(),
-                    [](const QString &filename) -> QString { return QStringLiteral("@HOWDY_CONFIG_DIR@" "/") + filename; });
-
-    mHowdyConfig->addConfigSources(systemConfigFiles + configFiles);
 
 
     mMainLayout = new QHBoxLayout(this);
     mMainLayout->setContentsMargins(0, 0, 0, 0);
 
-    if (!m_HowdyWidget) {
-        m_HowdyWidget = new Widget(this);
-         mMainLayout->addWidget(m_HowdyWidget);
+    if (!mHowdyWidget) {
+        mHowdyWidget = new Widget(this);
+         mMainLayout->addWidget(mHowdyWidget);
     }
-    connect(m_HowdyWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
+    connect(mHowdyWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
 }
 
 Howdy::~Howdy()
 {
-
+ delete mHowdyWidget;
 }
 
 void Howdy::save()
 {
-
-    m_HowdyWidget->save();
-//    QVariantMap args;
-
-//    args[QStringLiteral("howdy.conf")] = QLatin1String("@HOWDY_CONFIG_FILE@");
-
-//    KAuth::Action saveAction = authAction();
-
-//    saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmsddm"));
-//    saveAction.setArguments(args);
-
-//    auto job = saveAction.execute();
-//    job->exec();
-
-
+    mHowdyWidget->save();
 }
 
 void Howdy::load()
 {
-    m_HowdyWidget->loadDefaults();
+    mHowdyWidget->load();
 }
 
 QString Howdy::quickHelp() const
 {
-    return "Ahoj toto je quickhelp";
+    return "This configuration module allows you to configure howdy program.";
 }
 
 bool Howdy::apply()

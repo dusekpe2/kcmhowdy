@@ -6,9 +6,15 @@
 #include <QString>
 #include <map>
 #include <QSettings>
+#include <QUrl>
+#include <KConfig>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KSharedConfig>
+
 using namespace std;
-const QString INI_FILE = "/home/petr/untitled1/config.ini";
-//const QString INI_FILE = "/lib/security/howdy/config.ini";
+//const QString INI_FILE = "/home/petr/untitled1/config.ini";
+const QString INI_FILE = "/lib/security/howdy/config.ini";
 
 const QString DETECTION_NOTICE= "detection_notice";
 const QString IGNORE_CLOSED_LID = "ignore_closed_lid";
@@ -44,18 +50,27 @@ public:
 
     explicit Config(QWidget *parent = nullptr);
     ~Config();
-    void save();
+//    void save();
+    void load();
 
 public Q_SLOTS:
     void hasChanged();
+    void save();
+    void chooseButtonClicked();
+
 
 Q_SIGNALS:
 void changed(bool state);
 
 private:
     Ui::ConfigForm *ui;
-    void setValue(QString group, QString name, QString value);
-    QString getValue(QString group, QString name);
+    QString mDeviceUrl;
+
+    KSharedConfigPtr config;
+    KConfigGroup coreGroup;
+    KConfigGroup videoGroup;
+    KConfigGroup debugGroup;
+
 
 private:
 

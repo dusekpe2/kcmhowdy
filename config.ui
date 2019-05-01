@@ -220,10 +220,10 @@
             <set>Qt::AlignCenter</set>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelDarkThreshold">
+            <item row="6" column="0">
+             <widget class="QLabel" name="labelFrameHeight">
               <property name="text">
-               <string>Dark threshold</string>
+               <string>Frame height</string>
               </property>
              </widget>
             </item>
@@ -234,40 +234,8 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="labelRecordingPlugin">
-              <property name="text">
-               <string>Recording plugin</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="labelForceMjpeg">
-              <property name="text">
-               <string>Force mjpeg</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="labelFrameHeight">
-              <property name="text">
-               <string>Frame height</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="labelExposure">
-              <property name="text">
-               <string>Exposure</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelDeviceFormat">
-              <property name="text">
-               <string>Device format</string>
-              </property>
-             </widget>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinDarkThreshold"/>
             </item>
             <item row="10" column="0">
              <widget class="QLabel" name="labelTimeout">
@@ -276,51 +244,10 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="labelDevicePath">
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelDarkThreshold">
               <property name="text">
-               <string>Device path</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QLabel" name="labelMaxHeight">
-              <property name="text">
-               <string>Max height</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="labelFrameWidth">
-              <property name="text">
-               <string>Frame width</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="1">
-             <widget class="QSpinBox" name="spinTimeout"/>
-            </item>
-            <item row="9" column="1">
-             <widget class="QComboBox" name="comboRecordingPlugin"/>
-            </item>
-            <item row="8" column="1">
-             <widget class="QSpinBox" name="spinMaxHeight">
-              <property name="maximum">
-               <number>1000</number>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="1">
-             <widget class="QSpinBox" name="spinFrameWidth">
-              <property name="minimum">
-               <number>-10</number>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QSpinBox" name="spinFrameHeight">
-              <property name="minimum">
-               <number>-10</number>
+               <string>Dark threshold</string>
               </property>
              </widget>
             </item>
@@ -338,20 +265,135 @@
               </item>
              </widget>
             </item>
-            <item row="4" column="1">
-             <widget class="QSpinBox" name="spinExposure"/>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelExposure">
+              <property name="text">
+               <string>Exposure</string>
+              </property>
+             </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QComboBox" name="comboDevicePath"/>
+            <item row="7" column="1">
+             <widget class="QSpinBox" name="spinFrameWidth">
+              <property name="minimum">
+               <number>-1</number>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QSpinBox" name="spinMaxHeight">
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="labelRecordingPlugin">
+              <property name="text">
+               <string>Recording plugin</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QComboBox" name="comboRecordingPlugin">
+              <item>
+               <property name="text">
+                <string>opencv</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>ffmpeg</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>pyv4l2</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelDevicePath">
+              <property name="text">
+               <string>Device path</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="labelMaxHeight">
+              <property name="text">
+               <string>Max height</string>
+              </property>
+             </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QComboBox" name="comboDeviceFormat"/>
+             <widget class="QComboBox" name="comboDeviceFormat">
+              <item>
+               <property name="text">
+                <string>v4l2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>vfwcap</string>
+               </property>
+              </item>
+             </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QSpinBox" name="spinDarkThreshold"/>
+            <item row="10" column="1">
+             <widget class="QSpinBox" name="spinTimeout"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelDeviceFormat">
+              <property name="text">
+               <string>Device format</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QSpinBox" name="spinExposure">
+              <property name="minimum">
+               <number>-1</number>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="labelFrameWidth">
+              <property name="text">
+               <string>Frame width</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelForceMjpeg">
+              <property name="text">
+               <string>Force mjpeg</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QSpinBox" name="spinFrameHeight">
+              <property name="minimum">
+               <number>-1</number>
+              </property>
+             </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QDoubleSpinBox" name="spinCertainty"/>
+             <widget class="QDoubleSpinBox" name="spinCertainty">
+              <property name="minimum">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>10.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QPushButton" name="buttonDevicePath">
+              <property name="text">
+               <string>Choose path</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

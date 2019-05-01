@@ -16,7 +16,7 @@ FIND_PACKAGE(Qt5 COMPONENTS Core Widgets REQUIRED)
 FIND_PACKAGE(KF5ConfigWidgets REQUIRED)
 FIND_PACKAGE(KF5CoreAddons REQUIRED)
 FIND_PACKAGE(KF5I18n REQUIRED)
-FIND_PACKAGE(KF5 COMPONENTS DocTools)
+FIND_PACKAGE(KF5 COMPONENTS DocTools Archive)
 
 SET(howdy_SRCS
       howdy.cpp
@@ -25,6 +25,8 @@ SET(howdy_SRCS
       widget.ui
       config.cpp
       config.ui
+      model.cpp
+      model.ui
       )
 SET(PLUGIN_INSTALL_DIR "/usr/lib/x86_64-linux-gnu/qt5/plugins")
 SET(SERVICES_INSTALL_DIR "/usr/share/kservices5")
@@ -41,4 +43,12 @@ target_link_LIBRARIES( howdy
 
 INSTALL(TARGETS howdy          DESTINATION ${PLUGIN_INSTALL_DIR})
 INSTALL(FILES   howdy.desktop  DESTINATION ${SERVICES_INSTALL_DIR} )
+
+kauth_install_actions(org.kde.kcontrol.howdy howdy.actions)
+
+add_executable(howdy_authhelper howdyauthhelper.cpp)
+target_link_libraries(howdy_authhelper KF5::Auth KF5::ConfigCore KF5::Archive KF5::I18n)
+
+kauth_install_helper_files(howdy_authhelper org.kde.kcontrol.howdy root)
+install(TARGETS howdy_authhelper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 

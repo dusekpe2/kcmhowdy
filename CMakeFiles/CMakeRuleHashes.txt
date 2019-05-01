@@ -1,0 +1,8 @@
+# Hashes of file build rules.
+890ae16fc20c70a0601207f7bd027bf8 CMakeFiles/fetch-translations
+1593a4051f61b3f22a26046c28eb114b CMakeFiles/howdy_authhelper_autogen
+c1ae5e601afc6ae88d2255ef411b43ad CMakeFiles/howdy_autogen
+cfe3f2fc4996094efab201726e8aa736 CMakeFiles/org.kde.kcontrol.howdy.policy-customtarget
+27b752df5db56c2394e02cae10c16868 CMakeFiles/uninstall
+bf9abac5377fd91a16e758ac79777ff6 org.kde.kcontrol.howdy.policy
+f87bacca5ef52d522ae82f718d6fe00b releaseme

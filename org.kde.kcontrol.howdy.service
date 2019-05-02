@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=org.kde.kcontrol.howdy
-Exec=/usr/lib/kauth/libexec/howdy_authhelper
-User=root

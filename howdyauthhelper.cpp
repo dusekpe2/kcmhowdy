@@ -4,7 +4,7 @@
 
 ActionReply HowdyAuthHelper::command(const QVariantMap &args)
 {
-    QString dpkg_command = "howdy list";
+    QString dpkg_command = "sudo howdy list";
         QProcess *myProcess = new QProcess(this);
         myProcess->start(dpkg_command);
         myProcess->waitForFinished();
@@ -19,6 +19,7 @@ ActionReply HowdyAuthHelper::command(const QVariantMap &args)
         auto rc = ActionReply::SuccessReply();
         rc.addData("neco", installedPaths);
         return rc;
+
 }
 
 KAUTH_HELPER_MAIN("org.kde.kcontrol.howdy", HowdyAuthHelper);

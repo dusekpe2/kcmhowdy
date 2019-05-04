@@ -33,19 +33,19 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget)
     ui->Model->setLayout(layoutModel);
     layoutModel->addWidget(mModel);
 
-    KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmsddm.installtheme"));
-   saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmsddm"));
+//    KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.howdy.command"));
+//   saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.howdy"));
 
-   auto job = saveAction.execute();
+//   auto job = saveAction.execute();
 
 //    QVariantMap args;
-//    KAuth::Action commandAction(QStringLiteral("org.kde.kcontrol.howdy.command"));
+    KAuth::Action commandAction(QStringLiteral("org.kde.kcontrol.howdy.command"));
 
-//    commandAction.setHelperId(QStringLiteral("org.kde.kcontrol.howdy"));
+    commandAction.setHelperId(QStringLiteral("org.kde.kcontrol.howdy"));
 //    commandAction.setArguments(args);
 
-//    KAuth::ExecuteJob *job = commandAction.execute();
-//    job->exec();
+    KAuth::ExecuteJob *job = commandAction.execute();
+    job->exec();
 
     if (job->error()){
         qDebug() << "Save Failed";
@@ -54,7 +54,6 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget)
     } else {
         changed(false);
         qDebug() << "Option saved";
-        qDebug()<<job->data()["installedPaths"].toString();
     }
 
 //    connect(ui->comboDetectionNo tice, SIGNAL(currentTextChanged(QString)), this, SLOT(comboBoxChanged(QString)));

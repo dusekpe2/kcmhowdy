@@ -5,6 +5,7 @@
 #include <map>
 #include "parser.h"
 #include <iostream>
+#include "facemodelslist.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ private:
     void startCommand(QString command, QString argument, const char *answer);
     void updateTable();
     map<int, Parser*> modelList;
+    FaceModelsList myList;
 };
 
 #endif // MODEL_H

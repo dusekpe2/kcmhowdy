@@ -39,22 +39,22 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget)
 //   auto job = saveAction.execute();
 
 //    QVariantMap args;
-    KAuth::Action commandAction(QStringLiteral("org.kde.kcontrol.howdy.command"));
+//    KAuth::Action commandAction(QStringLiteral("org.kde.kcontrol.howdy.command"));
 
-    commandAction.setHelperId(QStringLiteral("org.kde.kcontrol.howdy"));
+//    commandAction.setHelperId(QStringLiteral("org.kde.kcontrol.howdy"));
 //    commandAction.setArguments(args);
 
-    KAuth::ExecuteJob *job = commandAction.execute();
-    job->exec();
+//    KAuth::ExecuteJob *job = commandAction.execute();
+//    job->exec();
 
-    if (job->error()){
-        qDebug() << "Save Failed";
-        qDebug() << job->errorString();
-        qDebug() << job->errorText();
-    } else {
-        changed(false);
-        qDebug() << "Option saved";
-    }
+//    if (job->error()){
+//        qDebug() << "Save Failed";
+//        qDebug() << job->errorString();
+//        qDebug() << job->errorText();
+//    } else {
+//        changed(false);
+//        qDebug() << "Option saved";
+//    }
 
 //    connect(ui->comboDetectionNo tice, SIGNAL(currentTextChanged(QString)), this, SLOT(comboBoxChanged(QString)));
     load(); //SMAZAT!!!

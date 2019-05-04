@@ -8,7 +8,10 @@
 #include <QDebug>
 #include <QDate>
 #include <QSortFilterProxyModel>
-
+#include "facemodel.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 Model::Model(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Model)
@@ -19,7 +22,20 @@ Model::Model(QWidget *parent) :
     ui->checkAllow->setChecked(true);
 
     connect(ui->checkAllow, SIGNAL(clicked(bool)), this, SLOT(handleCheckBox(bool)));
+//   QString name = qgetenv("USER");
+//   qDebug()<<name;
 
+//    QString val;
+//          QFile file;
+//          file.setFileName("/lib/security/howdy/models/petr.dat");
+//          file.open(QIODevice::ReadOnly | QIODevice::Text);
+//          val = file.readAll();
+//          file.close();
+//          qDebug() << val;
+//          QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
+//          QJsonArray sett2 = d;
+//                QJsonValue value = sett2.value(QString("label"));
+//                qDebug() << value;
 }
 
 Model::~Model()
@@ -87,55 +103,56 @@ void Model::handleCheckBox(bool state)
 
 void Model::updateTable()
 {
-    QString dpkg_command = "pkexec sudo howdy list";
-        QProcess *myProcess = new QProcess(this);
-        myProcess->start(dpkg_command);
-        myProcess->waitForFinished();
+//    QString dpkg_command = "pkexec sudo howdy list";
+//        QProcess *myProcess = new QProcess(this);
+//        myProcess->start(dpkg_command);
+//        myProcess->waitForFinished();
 
-        QString output(myProcess->readAllStandardOutput());
+//        QString output(myProcess->readAllStandardOutput());
+//        qDebug()<<output<<endl;
 
-        QStringList list = output.split("\n", QString::SkipEmptyParts);
+//        QStringList list = output.split("\n", QString::SkipEmptyParts);
 
-           QTextStream out(stdout);
+//           QTextStream out(stdout);
 
-        QStandardItemModel *myModel = new QStandardItemModel(0, 0, this);
+//        QStandardItemModel *myModel = new QStandardItemModel(0, 0, this);
 
 
-        for(int i=2; i< list.size(); i++){
-            Parser *p = new Parser(list.at(i));
-            modelList.insert(make_pair(p->getId().toInt(),p));
-            QStandardItem *id = new QStandardItem(p->getId());
-            QStandardItem *date = new QStandardItem(p->getDate());
-            QStandardItem *name = new QStandardItem(p->getName());
-            QStandardItem *remove = new QStandardItem(QString(""));
+//        for(int i=2; i< list.size(); i++){
+//            Parser *p = new Parser(list.at(i));
+//            modelList.insert(make_pair(p->getId().toInt(),p));
+//            QStandardItem *id = new QStandardItem(p->getId());
+//            QStandardItem *date = new QStandardItem(p->getDate());
+//            QStandardItem *name = new QStandardItem(p->getName());
+//            QStandardItem *remove = new QStandardItem(QString(""));
 
-            myModel->setItem(i-2,0, id);
-            myModel->setItem(i-2,1, date);
-            myModel->setItem(i-2,2, name);
-            myModel->setItem(i-2,3, remove);
-        }
+//            myModel->setItem(i-2,0, id);
+//            myModel->setItem(i-2,1, date);
+//            myModel->setItem(i-2,2, name);
+//            myModel->setItem(i-2,3, remove);
+//        }
 
-        qDebug()<<modelList[0]->getName();
+//        qDebug()<<modelList[0]->getName();
 
-        ui->tableView->setModel(myModel);
+//        ui->tableView->setModel(myModel);
 
-        ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//        ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        for(int i=2; i<list.size(); i++)
-        {
-            QSignalMapper *mapper = new QSignalMapper();
+//        for(int i=2; i<list.size(); i++)
+//        {
+//            QSignalMapper *mapper = new QSignalMapper();
 
-            QPushButton *button = new QPushButton("&Delete", this);
-            ui->tableView->setIndexWidget(myModel->index(i-2,3, QModelIndex()), button);
-            connect(button, SIGNAL(clicked()), mapper, SLOT(map()));
-            mapper->setMapping(button, i-2);
-            connect(mapper, SIGNAL(mapped(int)), this, SLOT(handleRemoveButton(int)));
+//            QPushButton *button = new QPushButton("&Delete", this);
+//            ui->tableView->setIndexWidget(myModel->index(i-2,3, QModelIndex()), button);
+//            connect(button, SIGNAL(clicked()), mapper, SLOT(map()));
+//            mapper->setMapping(button, i-2);
+//            connect(mapper, SIGNAL(mapped(int)), this, SLOT(handleRemoveButton(int)));
 
-        }
-        ui->tableView->setSortingEnabled(true);
-        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-        myModel->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-        myModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Date"));
-        myModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Label"));
-        myModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Delete"));
+//        }
+//        ui->tableView->setSortingEnabled(true);
+//        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//        myModel->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+//        myModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Date"));
+//        myModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Label"));
+//        myModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Delete"));
 }

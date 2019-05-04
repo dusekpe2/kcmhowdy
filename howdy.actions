@@ -1,4 +1,4 @@
-[org.kde.kcontrol.howdy.command]
+[org.kde.kcontrol.howdy.getmodels]
 Name=Example action
 Description=The system is attempting to perform the example action
 Policy=auth_admin

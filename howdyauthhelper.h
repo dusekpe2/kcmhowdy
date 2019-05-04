@@ -9,8 +9,8 @@ class HowdyAuthHelper : public QObject
 {
     Q_OBJECT
 public Q_SLOTS:
-    ActionReply command(const QVariantMap &args);
-
+    ActionReply getmodels(const QVariantMap &args);
+    ActionReply save(const QVariantMap &args);
 };
 
 #endif // HOWDYAUTHHELPER_H

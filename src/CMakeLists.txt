@@ -4,6 +4,8 @@ SET(howdy_SRCS
       widget.cpp
       config.cpp
       model.cpp
+      facemodel.cpp
+      facemodelslist.cpp
 )
 
 set(howdy_UI

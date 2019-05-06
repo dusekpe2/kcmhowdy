@@ -61,6 +61,10 @@ void KcmHowdy::prepareUi()
 
     tabHolder->addTab(mModelWidget, "Model");
 
+    mAddWidget = new AddWidget(this);
+//    connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
+    tabHolder->addTab(mAddWidget, "Add");
+
     mConfigWidget = new ConfigWidget(this);
     connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mConfigWidget, "Config");

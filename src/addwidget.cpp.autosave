@@ -19,5 +19,5 @@ AddWidget::~AddWidget()
 
 void AddWidget::handleAddButton()
 {
-
+    
 }

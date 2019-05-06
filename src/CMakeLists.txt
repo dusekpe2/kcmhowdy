@@ -6,11 +6,13 @@ SET(KCM_HOWDY_SRCS
       modelwidget.cpp
       facemodel.cpp
       facemodelslist.cpp
+      addwidget.cpp
 )
 
 set(KCM_HOWDY_UI
     ui/modelwidget.ui
     ui/configwidget.ui
+    ui/addwidget.ui
 )
 
 ki18n_wrap_ui(KCM_HOWDY_SRCS ${KCM_HOWDY_UI})

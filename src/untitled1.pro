@@ -41,7 +41,7 @@ HEADERS += \
     facemodel.h \
     facemodelslist.h
 FORMS += \
-    addwidget.ui \
+    ui/addwidget.ui \
     ui/configwidget.ui \
     ui/modelwidget.ui \
     ui/widget.ui

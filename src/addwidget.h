@@ -15,6 +15,9 @@ public:
     explicit AddWidget(QWidget *parent = nullptr);
     ~AddWidget();
 
+public Q_SLOTS:
+    void handleAddButton();
+
 private:
     Ui::AddWidget *ui;
 };

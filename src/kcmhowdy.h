@@ -27,7 +27,7 @@ public Q_SLOTS:
 private:
     ModelWidget *mModelWidget;
     ConfigWidget *mConfigWidget;
-    AddWidget *maddWidget;
+    AddWidget *mAddWidget;
 
 private:
     void prepareUi();

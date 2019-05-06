@@ -29,15 +29,15 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 #SET(PLUGIN_INSTALL_DIR "/usr/lib/x86_64-linux-gnu/qt5/plugins")
 #SET(SERVICES_INSTALL_DIR "/usr/share/kservices5")
 
-install(FILES   howdy.desktop  DESTINATION ${SERVICES_INSTALL_DIR} )
+install(FILES   kcm_howdy.desktop  DESTINATION ${SERVICES_INSTALL_DIR} )
 
-kauth_install_actions(org.kde.kcontrol.howdy howdy.actions)
+kauth_install_actions(org.kde.kcontrol.kcmhowdy kcm_howdy.actions)
 
-add_executable(howdy_authhelper howdyauthhelper.cpp)
-target_link_libraries(howdy_authhelper KF5::Auth KF5::ConfigCore KF5::Archive KF5::I18n)
+add_executable(kcmhowdy_authhelper howdyauthhelper.cpp)
+target_link_libraries(kcmhowdy_authhelper KF5::Auth KF5::ConfigCore KF5::Archive KF5::I18n)
 
-kauth_install_helper_files(howdy_authhelper org.kde.kcontrol.howdy root)
-install(TARGETS howdy_authhelper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
+kauth_install_helper_files(kcmhowdy_authhelper org.kde.kcontrol.kcmhowdy root)
+install(TARGETS kcmhowdy_authhelper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 
 add_subdirectory(src)
 

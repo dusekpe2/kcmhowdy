@@ -1,5 +1,5 @@
-#include "config.h"
-#include "ui_config.h"
+#include "configwidget.h"
+#include "ui_configwidget.h"
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
@@ -8,11 +8,12 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <KAuth>
+#include <QStringLiteral>
 
-Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::ConfigForm)
+ConfigWidget::ConfigWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConfigWidget)
 {
     ui->setupUi(this);
-    config = KSharedConfig::openConfig(INI_FILE);
+    config = KSharedConfig::openConfig(HOWDY_CONFIG_FILE);
 
     coreGroup = KConfigGroup(config, CORE);
     videoGroup = KConfigGroup(config, VIDEO);
@@ -35,17 +36,17 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::ConfigForm)
     connect(ui->spinFrameWidth, SIGNAL(valueChanged(int)), this, SLOT(hasChanged()));
     connect(ui->spinMaxHeight, SIGNAL(valueChanged(int)), this, SLOT(hasChanged()));
      connect(ui->comboRecordingPlugin, SIGNAL(currentTextChanged(QString)), this, SLOT(hasChanged()));
-    connect(ui->spinTimeout, SIGNAL(valueChanged(int)), this, SLOT(save()));
+    connect(ui->spinTimeout, SIGNAL(valueChanged(int)), this, SLOT(hasChanged()));
 
      connect(ui->comboEndReport, SIGNAL(currentTextChanged(QString)), this, SLOT(hasChanged()));
 }
 
-Config::~Config()
+ConfigWidget::~ConfigWidget()
 {
 
 }
 
-void Config::load()
+void ConfigWidget::load()
 {
 
     ui->comboDetectionNotice->setCurrentText(coreGroup.readEntry(DETECTION_NOTICE, QString()));
@@ -70,7 +71,7 @@ void Config::load()
     ui->comboEndReport->setCurrentText(debugGroup.readEntry(END_REPORT, QString()));
 }
 
-void Config::chooseButtonClicked()
+void ConfigWidget::chooseButtonClicked()
 {
     QFileDialog dialog;
         dialog.selectFile(videoGroup.readEntry(DEVICE_PATH, QString()));
@@ -89,37 +90,52 @@ void Config::chooseButtonClicked()
         }
 }
 
-void Config::save()
+void ConfigWidget::save()
 {
 
-    if(config->isConfigWritable(true)){
-        coreGroup.writeEntry(DETECTION_NOTICE,ui->comboDetectionNotice->currentText());
-        coreGroup.writeEntry(IGNORE_CLOSED_LID, ui->comboIgnoreClosedLid->currentText());
-        coreGroup.writeEntry(IGNORE_SSH, ui->comboIgnoreSsh->currentText());
-        coreGroup.writeEntry(NO_CONFIRMATION, ui->comboNoConfirmation->currentText());
-        coreGroup.writeEntry(SUPPRESS_UNKNOWN, ui->comboSuppressUnknown->currentText());
-        coreGroup.writeEntry(USE_CNN, ui->comboUseCnn->currentText());
+    QVariantMap args;
 
-        videoGroup.writeEntry(CERTAINTY, QString::number(ui->spinCertainty->value()));
-        videoGroup.writeEntry(DARK_THRESHOLD, QString::number(ui->spinDarkThreshold->value()));
-        videoGroup.writeEntry(DEVICE_FORMAT, ui->comboDeviceFormat->currentText());
-        videoGroup.writeEntry(DEVICE_PATH, mDeviceUrl);
-        videoGroup.writeEntry(EXPOSURE,QString::number(ui->spinExposure->value()));
-        videoGroup.writeEntry(FORCE_MJPEG, ui->comboForceMjpeg->currentText());
-        videoGroup.writeEntry(FRAME_HEIGHT, QString::number(ui->spinFrameHeight->value()));
-        videoGroup.writeEntry(FRAME_WIDTH, QString::number(ui->spinFrameWidth->value()));
-        videoGroup.writeEntry(MAX_HEIGHT, QString::number(ui->spinMaxHeight->value()));
-        videoGroup.writeEntry(RECORDING_PLUGIN, ui->comboRecordingPlugin->currentText());
-        videoGroup.writeEntry(TIMEOUT, QString::number(ui->spinTimeout->value()));
+    args[CORE+"/"+DETECTION_NOTICE] = ui->comboDetectionNotice->currentText();
+    args[CORE+"/"+IGNORE_CLOSED_LID] = ui->comboIgnoreClosedLid->currentText();
+    args[CORE+"/"+IGNORE_SSH] = ui->comboIgnoreSsh->currentText();
+    args[CORE+"/"+NO_CONFIRMATION] = ui->comboNoConfirmation->currentText();
+    args[CORE+"/"+SUPPRESS_UNKNOWN] = ui->comboSuppressUnknown->currentText();
+    args[CORE+"/"+USE_CNN] = ui->comboUseCnn->currentText();
 
-        debugGroup.writeEntry(END_REPORT, ui->comboEndReport->currentText());
+    args[VIDEO+"/"+CERTAINTY] =  QString::number(ui->spinCertainty->value());
+    args[VIDEO+"/"+DARK_THRESHOLD] = QString::number(ui->spinDarkThreshold->value());
+    args[VIDEO+"/"+DEVICE_FORMAT] = ui->comboDeviceFormat->currentText();
+    args[VIDEO+"/"+DEVICE_PATH] = mDeviceUrl;
+    args[VIDEO+"/"+EXPOSURE] = QString::number(ui->spinExposure->value());
+    args[VIDEO+"/"+FORCE_MJPEG] = ui->comboForceMjpeg->currentText();
+    args[VIDEO+"/"+FRAME_HEIGHT] = QString::number(ui->spinFrameHeight->value());
+    args[VIDEO+"/"+FRAME_WIDTH] = QString::number(ui->spinFrameWidth->value());
+    args[VIDEO+"/"+MAX_HEIGHT] = QString::number(ui->spinMaxHeight->value());
+    args[VIDEO+"/"+RECORDING_PLUGIN] = ui->comboRecordingPlugin->currentText();
+    args[VIDEO+"/"+TIMEOUT] = QString::number(ui->spinTimeout->value());
 
-        config->sync();
+    args[DEBUG+"/"+END_REPORT] = ui->comboEndReport->currentText();
+
+    args[QStringLiteral("conf")] = HOWDY_CONFIG_FILE;
+    KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.save"));
+    saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
+    saveAction.setArguments(args);
+
+    auto job = saveAction.execute();
+
+    job->exec();
+
+    if (job->error()){
+            qDebug() << "Save Failed";
+            qDebug() << job->errorString();
+            qDebug() << job->errorText();
+    } else {
+        qDebug() << "File saved";
     }
 
 }
 
-void Config::hasChanged()
+void ConfigWidget::hasChanged()
 {
     Q_EMIT changed(true);
 }

@@ -1,0 +1,24 @@
+[org.kde.kcontrol.kcmhowdy.getmodels]
+Name=Get models from howdy
+Description=The system is attempting to perform the example action
+Policy=auth_admin
+Persistence=session
+
+[org.kde.kcontrol.kcmhowdy.save]
+Name=Save config file
+Description=The system is attempting to perform the example action
+Policy=auth_admin
+Persistence=session
+
+[org.kde.kcontrol.kcmhowdy.clear]
+Name=Save config file
+Description=The system is attempting to perform the example action
+Policy=auth_admin
+Persistence=session
+
+[org.kde.kcontrol.kcmhowdy.remove]
+Name=Save config file
+Description=The system is attempting to perform the example action
+Policy=auth_admin
+Persistence=session
+

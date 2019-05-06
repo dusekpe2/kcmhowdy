@@ -1,22 +1,21 @@
-SET(howdy_SRCS
-      howdy.cpp
-      parser.cpp
-      widget.cpp
-      config.cpp
-      model.cpp
+configure_file(config.h.in config.h IMMEDIATE @ONLY)
+
+SET(KCM_HOWDY_SRCS
+      kcmhowdy.cpp
+      configwidget.cpp
+      modelwidget.cpp
       facemodel.cpp
       facemodelslist.cpp
 )
 
-set(howdy_UI
-    ui/model.ui
-    ui/widget.ui
-    ui/config.ui
+set(KCM_HOWDY_UI
+    ui/modelwidget.ui
+    ui/configwidget.ui
 )
 
-ki18n_wrap_ui(howdy_SRCS ${howdy_UI})
-add_library( howdy MODULE ${howdy_SRCS} )
-target_link_libraries( howdy
+ki18n_wrap_ui(KCM_HOWDY_SRCS ${KCM_HOWDY_UI})
+add_library( kcm_howdy MODULE ${KCM_HOWDY_SRCS} )
+target_link_libraries( kcm_howdy
                        KF5::CoreAddons
                        KF5::ConfigWidgets
                        KF5::I18n
@@ -25,4 +24,4 @@ target_link_libraries( howdy
 		       KF5::WidgetsAddons
 )
 
-install(TARGETS howdy DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS kcm_howdy DESTINATION ${PLUGIN_INSTALL_DIR})

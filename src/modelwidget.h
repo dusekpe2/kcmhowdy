@@ -3,23 +3,22 @@
 
 #include <QWidget>
 #include <map>
-#include "parser.h"
 #include <iostream>
 #include "facemodelslist.h"
 
 using namespace std;
 
 namespace Ui {
-class Model;
+class ModelWidget;
 }
 
-class Model : public QWidget
+class ModelWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Model(QWidget *parent = nullptr);
-    ~Model();
+    explicit ModelWidget(QWidget *parent = nullptr);
+    ~ModelWidget();
 
 public Q_SLOTS:
     void handleClearButton();
@@ -30,12 +29,15 @@ Q_SIGNALS:
     void disabledSignal(bool state);
 
 private:
-    Ui::Model *ui;
-    const char* showDialog(QString name, QString message);
-    void startCommand(QString command, QString argument, const char *answer);
-    void updateTable();
-    map<int, Parser*> modelList;
+    Ui::ModelWidget *ui;
     FaceModelsList myList;
+
+private:
+    const char* showDialog(QString name, QString message);
+    void updateTable();
+    void prepareUi();
+    //    void startCommand(QString command, QString argument, const char *answer);
+
 };
 
 #endif // MODEL_H

@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets KConfigCore KConfigGui multimedia KAuth
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets KConfigWidgets KConfigCore KConfigGui KAuth
 
 TARGET = untitled1
 TEMPLATE = app
@@ -25,25 +25,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    widget.cpp \
+    addwidget.cpp \
+    configwidget.cpp \
+    kcmhowdy.cpp \
+    modelwidget.cpp \
     main.cpp \
-    parser.cpp \
-    config.cpp \
-    model.cpp \
     facemodel.cpp \
     facemodelslist.cpp
 
 HEADERS += \
-    widget.h \
-    parser.h \
-    config.h \
-    model.h \
+    addwidget.h \
+    configwidget.h \
+    kcmhowdy.h \
+    modelwidget.h \
     facemodel.h \
     facemodelslist.h
 FORMS += \
-    ui/widget.ui \
-    ui/config.ui \
-    ui/model.ui
+    addwidget.ui \
+    ui/configwidget.ui \
+    ui/modelwidget.ui \
+    ui/widget.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

@@ -12,10 +12,11 @@ class FaceModelsList : QObject
 public:
     explicit FaceModelsList(QObject *parent=nullptr);
     bool updateData();
-    QStandardItemModel *getModel();
+    int size();
+    FaceModel* at(int position);
+    QVector<FaceModel*> getModels();
 private:
-    QVector<FaceModel> faceModels;
-    QStandardItemModel *myModel;
+    QVector<FaceModel*> faceModels;
 };
 
 #endif // FACEMODELSLIST_H

@@ -9,13 +9,15 @@ class FaceModel
 public:
     FaceModel(QString listLine);
     ~FaceModel();
-    QStandardItem* getId() const;
-    QStandardItem* getDate() const;
-    QStandardItem* getName() const;
+    QString getId() const;
+    QString getDate() const;
+    QString getName() const;
+
 private:
-    QStandardItem *m_Id;
-    QStandardItem *m_Date;
-    QStandardItem *m_Name;
+    QString m_Id;
+    QString m_Date;
+    QString m_Name;
+
 
     void setElements(QString inputString);
 

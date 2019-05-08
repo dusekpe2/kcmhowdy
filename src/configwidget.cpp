@@ -10,10 +10,12 @@
 #include <KAuth>
 #include <QStringLiteral>
 
-ConfigWidget::ConfigWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ConfigWidget)
+ConfigWidget::ConfigWidget(const KSharedConfigPtr &config, QWidget *parent) :
+    QWidget(parent),
+    mConfig(config),
+    ui(new Ui::ConfigWidget)
 {
     ui->setupUi(this);
-    config = KSharedConfig::openConfig(HOWDY_CONFIG_FILE);
 
     coreGroup = KConfigGroup(config, CORE);
     videoGroup = KConfigGroup(config, VIDEO);
@@ -43,7 +45,7 @@ ConfigWidget::ConfigWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Config
 
 ConfigWidget::~ConfigWidget()
 {
-
+    delete ui;
 }
 
 void ConfigWidget::load()
@@ -116,7 +118,8 @@ void ConfigWidget::save()
 
     args[DEBUG+"/"+END_REPORT] = ui->comboEndReport->currentText();
 
-    args[QStringLiteral("conf")] = HOWDY_CONFIG_FILE;
+    args[QStringLiteral("conf")] = mConfig->name();
+
     KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.save"));
     saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
     saveAction.setArguments(args);

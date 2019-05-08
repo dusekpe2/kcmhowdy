@@ -9,41 +9,23 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-ActionReply HowdyAuthHelper::getmodels(const QVariantMap &args)
-{
-        QString dpkg_command = "sudo howdy list --user " + args["user"].toString();
-        QProcess *myProcess = new QProcess(this);
-        myProcess->start(dpkg_command);
-        myProcess->waitForFinished();
+//ActionReply HowdyAuthHelper::addmodel(const QVariantMap &args)
+//{
+//        QString dpkg_command = "sudo howdy add --user " + args["user"].toString();
+//        QProcess *myProcess = new QProcess(this);
+//        myProcess->start(dpkg_command);
+//        myProcess->waitForFinished();
 
-        QString output(myProcess->readAllStandardOutput());
+//        QString output(myProcess->readAllStandardOutput());
 
-        QVariantMap retdata;
-           retdata["message"] = output;
+//        QVariantMap retdata;
+//           retdata["message"] = output;
 
-        auto rc = ActionReply::SuccessReply();
-        rc.setData(retdata);
-        return rc;
+//        auto rc = ActionReply::SuccessReply();
+//        rc.setData(retdata);
+//        return rc;
 
-}
-
-ActionReply HowdyAuthHelper::addmodel(const QVariantMap &args)
-{
-        QString dpkg_command = "sudo howdy add --user " + args["user"].toString();
-        QProcess *myProcess = new QProcess(this);
-        myProcess->start(dpkg_command);
-        myProcess->waitForFinished();
-
-        QString output(myProcess->readAllStandardOutput());
-
-        QVariantMap retdata;
-           retdata["message"] = output;
-
-        auto rc = ActionReply::SuccessReply();
-        rc.setData(retdata);
-        return rc;
-
-}
+//}
 
 ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 {
@@ -72,9 +54,11 @@ ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 
 }
 
-ActionReply HowdyAuthHelper::remove(const QVariantMap &args)
+ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
 {
-        QString dpkg_command = "sudo howdy remove " + args["modelId"].toString() + " --user " + args["user"].toString();
+        QString modelName = args["modelName"].toString();
+
+        QString dpkg_command = args["command"].toString() + args["modelId"].toString() + " --user " + args["user"].toString();
         QProcess *myProcess = new QProcess(this);
         myProcess->start(dpkg_command);
         myProcess->waitForStarted();
@@ -84,7 +68,13 @@ ActionReply HowdyAuthHelper::remove(const QVariantMap &args)
 
         QTextStream out(stdout);
         out<<output<<endl;
-        myProcess->write("y");
+
+        if(modelName.isNull()){
+            myProcess->write("y");
+        } else {
+            myProcess->write(modelName.toLatin1());
+        }
+
 
         myProcess->waitForBytesWritten();
         myProcess->closeWriteChannel();
@@ -100,39 +90,39 @@ ActionReply HowdyAuthHelper::remove(const QVariantMap &args)
 
 }
 
-ActionReply HowdyAuthHelper::clear(const QVariantMap &args)
-{
-    QString dpkg_command = "sudo howdy clear --user " + args["user"].toString();
-    QProcess *myProcess = new QProcess(this);
-    myProcess->start(dpkg_command);
-    myProcess->waitForStarted();
-    myProcess->waitForReadyRead();
+//ActionReply HowdyAuthHelper::clear(const QVariantMap &args)
+//{
+//    QString dpkg_command = "sudo howdy clear --user " + args["user"].toString();
+//    QProcess *myProcess = new QProcess(this);
+//    myProcess->start(dpkg_command);
+//    myProcess->waitForStarted();
+//    myProcess->waitForReadyRead();
 
-    QString output(myProcess->readAllStandardOutput());
+//    QString output(myProcess->readAllStandardOutput());
 
-    QTextStream out(stdout);
-    out<<output<<endl;
-    myProcess->write("y");
+//    QTextStream out(stdout);
+//    out<<output<<endl;
+//    myProcess->write("y");
 
-    myProcess->waitForBytesWritten();
-    myProcess->closeWriteChannel();
-    myProcess->waitForFinished();
+//    myProcess->waitForBytesWritten();
+//    myProcess->closeWriteChannel();
+//    myProcess->waitForFinished();
 
-    qDebug()<<output<<endl;
+//    qDebug()<<output<<endl;
 
-    QVariantMap retdata;
-       retdata["message"] = output;
-
-
-
-    auto rc = ActionReply::SuccessReply();
-    rc.setData(retdata);
-    return rc;
-
-}
+//    QVariantMap retdata;
+//       retdata["message"] = output;
 
 
 
-KAUTH_HELPER_MAIN("org.kde.kcontrol.kcmhowdy", HowdyAuthHelper);
+//    auto rc = ActionReply::SuccessReply();
+//    rc.setData(retdata);
+//    return rc;
+
+//}
+
+
+
+KAUTH_HELPER_MAIN("org.kde.kcontrol.kcmhowdy", HowdyAuthHelper)
 
 #include "moc_howdyauthhelper.cpp"

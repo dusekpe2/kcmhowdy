@@ -7,7 +7,7 @@
 class FaceModel
 {
 public:
-    FaceModel(QString listLine);
+    FaceModel(double id, double time, QString name);
     ~FaceModel();
     QString getId() const;
     QString getDate() const;

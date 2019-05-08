@@ -4,6 +4,7 @@
 const QString HOWDY_CONFIG_FILE = "/lib/security/howdy/config.ini";
 
 const QString DETECTION_NOTICE= "detection_notice";
+const QString DISABLED= "disabled";
 const QString IGNORE_CLOSED_LID = "ignore_closed_lid";
 const QString IGNORE_SSH = "ignore_ssh";
 const QString NO_CONFIRMATION = "no_confirmation";

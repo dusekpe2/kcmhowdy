@@ -10,6 +10,7 @@
 #include <KLocalizedString>
 #include "config.h"
 #include <QDebug>
+#include <config.h>
 
 K_PLUGIN_FACTORY(howdyConfigFactory, registerPlugin<KcmHowdy>();)
 
@@ -18,6 +19,9 @@ using namespace std;
 KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
     KCModule(parent, args)
 {
+
+
+    mHowdyConfig = KSharedConfig::openConfig(HOWDY_CONFIG_FILE);
 
 //    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),
 //                                       i18n("KDE howdy control module"),
@@ -56,31 +60,39 @@ void KcmHowdy::prepareUi()
     layout->addWidget(tabHolder);
 
 
-    mModelWidget = new ModelWidget(this);
-    //connect(mModelWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
-
+    mModelWidget = new ModelWidget(mHowdyConfig, this);
+    connect(mModelWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mModelWidget, "Model");
 
     mAddWidget = new AddWidget(this);
-//    connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mAddWidget, "Add");
 
-    mConfigWidget = new ConfigWidget(this);
+    mConfigWidget = new ConfigWidget(mHowdyConfig, this);
     connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mConfigWidget, "Config");
 
-
+    connect(tabHolder, SIGNAL(tabBarClicked(int)), this, SLOT(updateTable(int)));
 //    connect(tabHolder, SIGNAL(currentChanged(int)), this, SLOT(load()));
 }
 
 void KcmHowdy::save()
 {
     mConfigWidget->save();
+    mModelWidget->save();
 }
 
 void KcmHowdy::load()
 {
     mConfigWidget->load();
+}
+
+void KcmHowdy::updateTable(int index)
+{
+    if(index == 0)
+    {
+        mModelWidget->updateTable();
+    }
+
 }
 
 QString KcmHowdy::quickHelp() const
@@ -92,12 +104,5 @@ bool KcmHowdy::apply()
 {
     return true;
 }
-
-
-//QSize KcmHowdy::sizeHint() const
-//{
-//    return QSize(0, 400);
-//}
-
 
 #include "kcmhowdy.moc"

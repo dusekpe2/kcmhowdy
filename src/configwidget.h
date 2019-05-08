@@ -20,7 +20,7 @@ class ConfigWidget : public QWidget
     Q_OBJECT
 public:
 
-    explicit ConfigWidget(QWidget *parent = nullptr);
+    explicit ConfigWidget( const KSharedConfigPtr &config, QWidget *parent = nullptr);
     ~ConfigWidget();
     void load();
 
@@ -37,7 +37,7 @@ private:
     Ui::ConfigWidget *ui;
     QString mDeviceUrl;
 
-    KSharedConfigPtr config;
+    KSharedConfigPtr mConfig;
     KConfigGroup coreGroup;
     KConfigGroup videoGroup;
     KConfigGroup debugGroup;

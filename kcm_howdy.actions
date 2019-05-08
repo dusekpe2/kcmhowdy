@@ -10,13 +10,7 @@ Description=The system is attempting to perform the example action
 Policy=auth_admin
 Persistence=session
 
-[org.kde.kcontrol.kcmhowdy.clear]
-Name=Save config file
-Description=The system is attempting to perform the example action
-Policy=auth_admin
-Persistence=session
-
-[org.kde.kcontrol.kcmhowdy.remove]
+[org.kde.kcontrol.kcmhowdy.startcommand]
 Name=Save config file
 Description=The system is attempting to perform the example action
 Policy=auth_admin

@@ -1,9 +1,15 @@
 #include "facemodel.h"
 #include <QDebug>
+#include<QDateTime>
 
-FaceModel::FaceModel(QString listLine)
+FaceModel::FaceModel(double id, double time, QString name)
 {
-    this->setElements(listLine);
+    m_Id = QString::number(id);
+    QDateTime timestamp;
+    timestamp.setTime_t(time);
+    m_Date = timestamp.toString("dd.MM.yyyy hh:mm");
+    m_Name = name;
+
 }
 
 QString FaceModel::getId() const

@@ -10,7 +10,6 @@
 #include <KLocalizedString>
 #include "config.h"
 #include <QDebug>
-#include <config.h>
 
 K_PLUGIN_FACTORY(howdyConfigFactory, registerPlugin<KcmHowdy>();)
 
@@ -19,9 +18,15 @@ using namespace std;
 KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
     KCModule(parent, args)
 {
-
+    actualUserName = qgetenv("USER");
 
     mHowdyConfig = KSharedConfig::openConfig(HOWDY_CONFIG_FILE);
+
+    dataWatcher.addPath(HOWDY_DATA_FILES_DIR + actualUserName + ".dat");
+    connect(&dataWatcher, SIGNAL(fileChanged(QString)), this, SLOT(updateTable()));
+
+    configWatcher.addPath(mHowdyConfig->name());
+    connect(&configWatcher, SIGNAL(fileChanged(QString)), this, SLOT(load()));
 
 //    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),
 //                                       i18n("KDE howdy control module"),
@@ -71,7 +76,6 @@ void KcmHowdy::prepareUi()
     connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mConfigWidget, "Config");
 
-    connect(tabHolder, SIGNAL(tabBarClicked(int)), this, SLOT(updateTable(int)));
 //    connect(tabHolder, SIGNAL(currentChanged(int)), this, SLOT(load()));
 }
 
@@ -86,13 +90,9 @@ void KcmHowdy::load()
     mConfigWidget->load();
 }
 
-void KcmHowdy::updateTable(int index)
+void KcmHowdy::updateTable()
 {
-    if(index == 0)
-    {
-        mModelWidget->updateTable();
-    }
-
+    mModelWidget->updateTable();
 }
 
 QString KcmHowdy::quickHelp() const

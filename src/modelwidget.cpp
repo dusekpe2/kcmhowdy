@@ -8,7 +8,6 @@
 #include <QDebug>
 #include <QDate>
 #include <QSortFilterProxyModel>
-#include "facemodel.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>

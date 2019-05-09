@@ -50,6 +50,7 @@ ConfigWidget::~ConfigWidget()
 
 void ConfigWidget::load()
 {
+    mConfig->reparseConfiguration();
 
     ui->comboDetectionNotice->setCurrentText(coreGroup.readEntry(DETECTION_NOTICE, QString()));
     ui->comboIgnoreClosedLid->setCurrentText(coreGroup.readEntry(IGNORE_CLOSED_LID, QString()));
@@ -71,6 +72,8 @@ void ConfigWidget::load()
     ui->spinTimeout->setValue(videoGroup.readEntry(TIMEOUT, int()));
 
     ui->comboEndReport->setCurrentText(debugGroup.readEntry(END_REPORT, QString()));
+
+    changed(false);
 }
 
 void ConfigWidget::chooseButtonClicked()

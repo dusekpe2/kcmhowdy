@@ -27,5 +27,7 @@ const QString CORE = "core";
 const QString VIDEO = "video";
 const QString DEBUG = "debug";
 
+const QString HOWDY_DATA_FILES_DIR = "/lib/security/howdy/models/";
+
 
 #endif //CONFIG_H

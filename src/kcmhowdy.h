@@ -1,6 +1,7 @@
 #ifndef MODULE_H
 #define MODULE_H
 
+#include <QFileSystemWatcher>
 #include <QString>
 #include <KCModule>
 #include <KSharedConfig>
@@ -21,12 +22,15 @@ public:
 public Q_SLOTS:
     void save() override;
     void load() override;
-    void updateTable(int index);
+    void updateTable();
 private:
     KSharedConfigPtr mHowdyConfig;
     ModelWidget *mModelWidget;
     ConfigWidget *mConfigWidget;
     AddWidget *mAddWidget;
+    QFileSystemWatcher dataWatcher;
+    QFileSystemWatcher configWatcher;
+    QString actualUserName;
 
 private:
     void prepareUi();

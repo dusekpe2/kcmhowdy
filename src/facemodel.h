@@ -14,13 +14,9 @@ public:
     QString getName() const;
 
 private:
-    QString m_Id;
-    QString m_Date;
-    QString m_Name;
-
-
-    void setElements(QString inputString);
-
+    QString mId;
+    QString mDate;
+    QString mName;
 };
 
 #endif // FACEMODEL_H

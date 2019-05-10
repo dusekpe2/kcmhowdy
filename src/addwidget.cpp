@@ -3,12 +3,19 @@
 
 #include <KAuth>
 #include <QDebug>
+#include <QMessageBox>
 
-AddWidget::AddWidget(QWidget *parent) :
+const int MAX_LENGTH = 24;
+const QString DEFAULT_NAME = "noname";
+
+AddWidget::AddWidget(const QString userName, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AddWidget)
+    ui(new Ui::AddWidget),
+    actualUserName(userName)
 {
     ui->setupUi(this);
+
+    ui->lineEdit->setMaxLength(MAX_LENGTH);
 
     connect(ui->pushButtonAdd, SIGNAL(clicked()), this, SLOT(handleAddButton()));
 }
@@ -22,9 +29,14 @@ void AddWidget::handleAddButton()
 {
     QVariantMap args;
 
-    args["modelName"] = ui->lineEdit->text();
+    if(ui->lineEdit->text().size())
+    {
+        args["modelName"] = ui->lineEdit->text();
+    } else {
+        args["modelName"] = DEFAULT_NAME;
+    }
+
     args["command"] = "sudo howdy add ";
-    QString actualUserName = qgetenv("USER");
 
     args[QStringLiteral("user")] = actualUserName;
 

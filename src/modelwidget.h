@@ -19,7 +19,7 @@ class ModelWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ModelWidget(const KSharedConfigPtr &config, QWidget *parent = nullptr);
+    explicit ModelWidget(const QString userName, const KSharedConfigPtr &config, const QString modelsFileName, QWidget *parent = nullptr);
     ~ModelWidget();
     void updateTable();
 
@@ -29,15 +29,17 @@ public Q_SLOTS:
     void handleCheckBox(bool state);
     void hasChanged();
     void save();
+    void load();
 
 Q_SIGNALS:
 void changed(bool state);
 
 private:
     Ui::ModelWidget *ui;
-    FaceModelsList myList;
+    FaceModelsList mFacesModel;
     KSharedConfigPtr mConfig;
-    bool isEnabled;
+    bool mIsEnabled;
+    QString mActualUserName;
 private:
     QString showDialog(QString name, QString message);
     void prepareUi();

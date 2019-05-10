@@ -12,8 +12,8 @@
 
 ConfigWidget::ConfigWidget(const KSharedConfigPtr &config, QWidget *parent) :
     QWidget(parent),
-    mConfig(config),
-    ui(new Ui::ConfigWidget)
+    ui(new Ui::ConfigWidget),
+    mConfig(config)
 {
     ui->setupUi(this);
 

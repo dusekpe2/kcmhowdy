@@ -22,15 +22,17 @@ public:
 public Q_SLOTS:
     void save() override;
     void load() override;
+    void addPath();
     void updateTable();
 private:
     KSharedConfigPtr mHowdyConfig;
     ModelWidget *mModelWidget;
     ConfigWidget *mConfigWidget;
     AddWidget *mAddWidget;
-    QFileSystemWatcher dataWatcher;
-    QFileSystemWatcher configWatcher;
-    QString actualUserName;
+    QFileSystemWatcher mDataWatcher;
+    QFileSystemWatcher mConfigWatcher;
+    QString mActualUserName;
+    QString mModelsFile;
 
 private:
     void prepareUi();

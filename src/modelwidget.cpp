@@ -16,36 +16,17 @@
 #include <KConfigGroup>
 #include <QState>
 
-ModelWidget::ModelWidget(const KSharedConfigPtr &config, QWidget *parent) :
+ModelWidget::ModelWidget(const QString userName, const KSharedConfigPtr &config, const QString modelsFileName, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModelWidget),
-    mConfig(config)
+    mFacesModel(modelsFileName),
+    mConfig(config),
+    mActualUserName(userName)
 {
     ui->setupUi(this); 
 
-
-    KConfigGroup coreGroup = KConfigGroup(mConfig, CORE);
-
-    isEnabled = (coreGroup.readEntry(DISABLED, QString()) == "false");
-
-   prepareUi();
-   updateTable();
-
-
-//   QString name = qgetenv("USER");
-//   qDebug()<<name;
-
-//    QString val;
-//          QFile file;
-//          file.setFileName("/lib/security/howdy/models/petr.dat");
-//          file.open(QIODevice::ReadOnly | QIODevice::Text);
-//          val = file.readAll();
-//          file.close();
-//          qDebug() << val;
-//          QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-//          QJsonArray sett2 = d;
-//                QJsonValue value = sett2.value(QString("label"));
-//                qDebug() << value;
+    prepareUi();
+    updateTable();
 }
 
 ModelWidget::~ModelWidget()
@@ -56,7 +37,6 @@ ModelWidget::~ModelWidget()
 
 void ModelWidget::hasChanged()
 {
-    qDebug()<<"hasChanged"<<endl;
     Q_EMIT changed(true);
 }
 
@@ -67,12 +47,11 @@ void ModelWidget::handleClearButton()
    QString answer = showDialog("Clear", "Remove all models?");
 
     if(answer == "y"){
-        QString actualUserName = qgetenv("USER");
 
         QVariantMap args;
 
         args["command"] = "sudo howdy clear ";
-        args[QStringLiteral("user")] = actualUserName;
+        args[QStringLiteral("user")] = mActualUserName;
 
         KAuth::Action getModelsAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.startcommand"));
         getModelsAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
@@ -116,12 +95,10 @@ void ModelWidget::handleRemoveButton(int id)
     if(answer == "y")
     {
 
-        QString actualUserName = qgetenv("USER");
-
         QVariantMap args;
 
         args["command"] = "sudo howdy remove ";
-        args[QStringLiteral("user")] = actualUserName;
+        args[QStringLiteral("user")] = mActualUserName;
         args[QStringLiteral("modelId")] = id;
         KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.startcommand"));
         saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
@@ -141,16 +118,12 @@ void ModelWidget::handleRemoveButton(int id)
             updateTable();
         }
 
-
     }
-
-
 }
 
 void ModelWidget::handleCheckBox(bool state)
 {
-    qDebug()<<"handleCheckBox"<<endl;
-    isEnabled = state;
+    mIsEnabled = state;
     hasChanged();
 
 }
@@ -159,7 +132,7 @@ void ModelWidget::save()
 {
     QVariantMap args;
     args[QStringLiteral("conf")] = mConfig->name();
-    args[CORE+"/"+DISABLED] = !isEnabled;
+    args[CORE+"/"+DISABLED] = !mIsEnabled;
 
     KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.save"));
     saveAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
@@ -179,69 +152,44 @@ void ModelWidget::save()
 
 }
 
+void ModelWidget::load()
+{
+    mIsEnabled = (mConfig->entryMap(CORE)[DISABLED] =="false");
+    ui->checkAllow->setChecked(mIsEnabled);
+}
+
 void ModelWidget::prepareUi()
 {
-    ui->checkAllow->setChecked(isEnabled);
 
     connect(ui->checkAllow, SIGNAL(clicked(bool)), this, SLOT(handleCheckBox(bool)));
 
-    QTableWidgetItem *headerId = new QTableWidgetItem();
-    headerId->setText("Id");
+    ui->tableView->setModel(&mFacesModel);
 
-    QTableWidgetItem *headerDate = new QTableWidgetItem();
-    headerDate->setText("Date");
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    QTableWidgetItem *headerName = new QTableWidgetItem();
-    headerName->setText("Name");
-
-    QTableWidgetItem *headerDelete = new QTableWidgetItem();
-    headerDelete->setText("Delete");
-
-    ui->tableView->setModel(&myList);
-
-//    ui->tableWidget->setColumnCount(4);
-//    ui->tableWidget->setHorizontalHeaderItem(0, headerId);
-//    ui->tableWidget->setHorizontalHeaderItem(1, headerDate);
-//    ui->tableWidget->setHorizontalHeaderItem(2, headerName);
-//    ui->tableWidget->setHorizontalHeaderItem(3, headerDelete);
-
-//    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-//    ui->tableWidget->verticalHeader()->hide();
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(handleClearButton()));
 
 }
 
 void ModelWidget::updateTable()
 {
-    myList.updateData();
-    ui->tableView->update();
-//    ui->tableWidget->setRowCount(0);
+    if(mFacesModel.updateData())
+    {
+        ui->tableView->update();
 
-//    ui->tableWidget->setRowCount(myList.size());
+        for(int i=0; i<mFacesModel.rowCount(); i++)
+        {
+            QPushButton *delButton = new QPushButton();
+            delButton->setText("Delete");
 
+             ui->tableView->setIndexWidget(mFacesModel.index(i,mFacesModel.columnCount()-1), delButton);
 
-//    for(int i=0; i<myList.size(); i++)
-//    {
-//        QTableWidgetItem *idItem = new QTableWidgetItem(myList.at(i)->getId());
-//        idItem->setTextAlignment(Qt::AlignCenter);
+             QSignalMapper *mapper = new QSignalMapper();
 
-//        QTableWidgetItem *dateItem = new QTableWidgetItem(myList.at(i)->getDate());
-//        QTableWidgetItem *nameItem = new QTableWidgetItem(myList.at(i)->getName());
-
-
-//        ui->tableWidget->setItem(i, 0, idItem);
-//        ui->tableWidget->setItem(i, 1, dateItem);
-//        ui->tableWidget->setItem(i, 2, nameItem);
-
-//        QPushButton* btnRemove = new QPushButton();
-//        btnRemove->setText("Remove");
-
-//        ui->tableWidget->setCellWidget(i, 3, btnRemove);
-
-//        QSignalMapper *mapper = new QSignalMapper();
-
-//        connect(btnRemove, SIGNAL(clicked()), mapper, SLOT(map()));
-//        mapper->setMapping(btnRemove, myList.at(i)->getId().toInt());
-//        connect(mapper, SIGNAL(mapped(int)), this, SLOT(handleRemoveButton(int)));
-//    }
+            qDebug()<<mFacesModel.at(i).getId()<<endl;
+             connect(delButton, SIGNAL(clicked()), mapper, SLOT(map()));
+             mapper->setMapping(delButton, mFacesModel.at(i).getId().toInt());
+             connect(mapper, SIGNAL(mapped(int)), this, SLOT(handleRemoveButton(int)));
+        }
+    }
 }

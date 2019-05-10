@@ -18,15 +18,19 @@ using namespace std;
 KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
     KCModule(parent, args)
 {
-    actualUserName = qgetenv("USER");
+    mActualUserName = qgetenv("USER");
+
+    mModelsFile = HOWDY_DATA_FILES_DIR + mActualUserName + ".dat";
 
     mHowdyConfig = KSharedConfig::openConfig(HOWDY_CONFIG_FILE);
 
-    dataWatcher.addPath(HOWDY_DATA_FILES_DIR + actualUserName + ".dat");
-    connect(&dataWatcher, SIGNAL(fileChanged(QString)), this, SLOT(updateTable()));
+    mDataWatcher.addPath(mModelsFile);
+    mDataWatcher.addPath(HOWDY_DATA_FILES_DIR);
+    connect(&mDataWatcher, SIGNAL(fileChanged(QString)), this, SLOT(updateTable()));
+    connect(&mDataWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(addPath()));
 
-    configWatcher.addPath(mHowdyConfig->name());
-    connect(&configWatcher, SIGNAL(fileChanged(QString)), this, SLOT(load()));
+    mConfigWatcher.addPath(mHowdyConfig->name());
+    connect(&mConfigWatcher, SIGNAL(fileChanged(QString)), this, SLOT(load()));
 
 //    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),
 //                                       i18n("KDE howdy control module"),
@@ -55,7 +59,12 @@ KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
 
 KcmHowdy::~KcmHowdy()
 {
-// delete mHowdyWidget;
+
+}
+
+void KcmHowdy::addPath()
+{
+    mDataWatcher.addPath(mModelsFile);
 }
 
 void KcmHowdy::prepareUi()
@@ -64,19 +73,19 @@ void KcmHowdy::prepareUi()
     QTabWidget* tabHolder = new QTabWidget(this);
     layout->addWidget(tabHolder);
 
+    setButtons(Apply);
 
-    mModelWidget = new ModelWidget(mHowdyConfig, this);
+    mModelWidget = new ModelWidget(mActualUserName, mHowdyConfig, mModelsFile, this);
     connect(mModelWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mModelWidget, "Model");
 
-    mAddWidget = new AddWidget(this);
+    mAddWidget = new AddWidget(mActualUserName, this);
     tabHolder->addTab(mAddWidget, "Add");
 
     mConfigWidget = new ConfigWidget(mHowdyConfig, this);
     connect(mConfigWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
     tabHolder->addTab(mConfigWidget, "Config");
 
-//    connect(tabHolder, SIGNAL(currentChanged(int)), this, SLOT(load()));
 }
 
 void KcmHowdy::save()
@@ -88,6 +97,7 @@ void KcmHowdy::save()
 void KcmHowdy::load()
 {
     mConfigWidget->load();
+    mModelWidget->load();
 }
 
 void KcmHowdy::updateTable()
@@ -97,7 +107,7 @@ void KcmHowdy::updateTable()
 
 QString KcmHowdy::quickHelp() const
 {
-    return "This configuration module allows you to configure howdy program.";
+    return "This configuration module allows you to configure Howdy program.";
 }
 
 bool KcmHowdy::apply()

@@ -2,6 +2,7 @@
 #define ADDWIDGET_H
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
 class AddWidget;
@@ -12,7 +13,7 @@ class AddWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit AddWidget(QWidget *parent = nullptr);
+    explicit AddWidget(const QString userName, QWidget *parent = nullptr);
     ~AddWidget();
 
 public Q_SLOTS:
@@ -20,6 +21,7 @@ public Q_SLOTS:
 
 private:
     Ui::AddWidget *ui;
+    QString actualUserName;
 };
 
 #endif // ADDWIDGET_H

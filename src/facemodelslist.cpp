@@ -5,17 +5,22 @@
 #include <QJsonArray>
 #include <QDateTime>
 
-FaceModelsList::FaceModelsList(QObject *parent) :
+FaceModelsList::FaceModelsList(QString fileName, QObject *parent) :
     QAbstractTableModel(parent)
 {
-    mFile.setFileName("/lib/security/howdy/models/petr.dat");
+    mFile.setFileName(fileName);
     updateData();
 
 }
 
+FaceModel FaceModelsList::at(int position)
+{
+    return mFaceModels.at(position);
+}
+
 int FaceModelsList::rowCount(const QModelIndex &parent) const
 {
-    return faceModels.size();
+    return mFaceModels.size();
 }
 int FaceModelsList::columnCount(const QModelIndex &parent) const
 {
@@ -32,23 +37,19 @@ QVariant FaceModelsList::data(const QModelIndex &index, int role) const
 
     if(role == Qt::DisplayRole && col==0)
     {
-        return faceModels.at(row).getId();
+        return mFaceModels.at(row).getId();
     }
 
     if(role == Qt::DisplayRole && col==1)
     {
-        return faceModels.at(row).getDate();
+        return mFaceModels.at(row).getDate();
     }
 
     if(role == Qt::DisplayRole && col==2)
     {
-        return faceModels.at(row).getName();
+        return mFaceModels.at(row).getName();
     }
 
-    if(role == Qt::DisplayRole && col==3)
-    {
-        return "delete";
-    }
 
     return QVariant();
 }
@@ -70,20 +71,10 @@ QVariant FaceModelsList::headerData(int section, Qt::Orientation orientation, in
     return QVariant();
 }
 
-int FaceModelsList::size()
-{
-    return faceModels.size();
-}
-
-//FaceModel* FaceModelsList::at(int position)
-//{
-//    return faceModels.at(position);
-//}
-
 bool FaceModelsList::updateData()
 {
     removeRows(0, 1);
-    faceModels.clear();
+    mFaceModels.clear();
     beginResetModel();
 
     QString fileContent;
@@ -113,7 +104,7 @@ bool FaceModelsList::updateData()
 
             FaceModel model(id, time, name);
 
-            faceModels.append(model);
+            mFaceModels.append(model);
 
 
         }
@@ -125,56 +116,5 @@ bool FaceModelsList::updateData()
     } else {
         return false;
     }
-//             QJsonArray sett2 = d;
-//                   QJsonValue value = sett2.value(QString("label"));
-//                   qDebug() << value;
-//    faceModels.clear();
-//    QString actualUserName = qgetenv("USER");
 
-//    QVariantMap args;
-
-//    args[QStringLiteral("user")] = actualUserName;
-
-//    KAuth::Action getModelsAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.getmodels"));
-//    getModelsAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
-//    getModelsAction.setArguments(args);
-
-//    auto job = getModelsAction.execute();
-
-//    job->exec();
-
-//    if (job->error()){
-//        qDebug() << "Updatedata action failed";
-//        exit(255);
-//        qDebug() << job->errorString();
-//        qDebug() << job->errorText();
-//        return false;
-//    } else {
-
-//        qDebug() << "Updatedata action succeeded";
-
-//        QString mstring = job->data()["message"].toString();
-//        qDebug()<<mstring<<endl;
-
-
-
-//                QStringList list = mstring.split("\n", QString::SkipEmptyParts);
-
-//                   QTextStream out(stdout);
-
-//                for(int i=2; i< list.size(); i++){
-//                    FaceModel *f = new FaceModel(list.at(i));
-//                    faceModels.push_back(f);
-
-//                }
-
-//                return true;
-//    }
-
-
-}
-
-QList<FaceModel> FaceModelsList::getModels()
-{
-    return faceModels;
 }

@@ -43,7 +43,6 @@ private:
 private:
     QString showDialog(QString name, QString message);
     void prepareUi();
-    //    void startCommand(QString command, QString argument, const char *answer);
 
 };
 

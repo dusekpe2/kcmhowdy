@@ -2,11 +2,9 @@
 #include "ui_addwidget.h"
 
 #include <KAuth>
-#include <QDebug>
 #include <QMessageBox>
 
 const int MAX_LENGTH = 24;
-const QString DEFAULT_NAME = "noname";
 
 AddWidget::AddWidget(const QString userName, QWidget *parent) :
     QWidget(parent),
@@ -29,12 +27,8 @@ void AddWidget::handleAddButton()
 {
     QVariantMap args;
 
-    if(ui->lineEdit->text().size())
-    {
-        args["modelName"] = ui->lineEdit->text();
-    } else {
-        args["modelName"] = DEFAULT_NAME;
-    }
+    args["modelName"] = ui->lineEdit->text();
+
 
     args["command"] = "sudo howdy add ";
 
@@ -44,16 +38,23 @@ void AddWidget::handleAddButton()
     startCommandAction.setHelperId(QStringLiteral("org.kde.kcontrol.kcmhowdy"));
     startCommandAction.setArguments(args);
 
+    QMessageBox infoBox;
+    infoBox.information(nullptr, "Info", "Look at the camera until success appear");
+    infoBox.setFixedSize(500,200);
+
     auto job = startCommandAction.execute();
 
     job->exec();
 
+    QMessageBox messageBox;
+
     if (job->error()){
-        qDebug() << "Adding failed";
-        qDebug() << job->errorString();
-        qDebug() << job->errorText();
+        messageBox.critical(nullptr, "Error", job->errorString());
+        messageBox.setFixedSize(500,200);
     } else {
-        qDebug() << "Added";
-        ui->lineEdit->clear();
+        messageBox.information(nullptr, "Success", "Added model for user " + actualUserName);
+        messageBox.setFixedSize(500,200);
+
     }
+
 }

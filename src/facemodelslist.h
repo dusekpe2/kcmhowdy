@@ -1,11 +1,9 @@
 #ifndef FACEMODELSLIST_H
 #define FACEMODELSLIST_H
-#include <KAuth>
-#include <QVector>
+
 #include "facemodel.h"
-#include <QStandardItemModel>
+#include <KAuth>
 #include <QFile>
-#include <QAbstractTableModel>
 
 class FaceModelsList : public QAbstractTableModel
 {

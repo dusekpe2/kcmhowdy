@@ -1,12 +1,9 @@
 #include "configwidget.h"
 #include "ui_configwidget.h"
-#include <QFile>
-#include <QTextStream>
 #include <QMessageBox>
-#include <QDebug>
 #include <iostream>
 #include <QFileDialog>
-#include <QDebug>
+
 #include <KAuth>
 #include <QStringLiteral>
 
@@ -131,13 +128,14 @@ void ConfigWidget::save()
 
     job->exec();
 
+    QMessageBox messageBox;
+
     if (job->error()){
-            qDebug() << "Save Failed";
-            qDebug() << job->errorString();
-            qDebug() << job->errorText();
+        messageBox.critical(nullptr, "Error", "Save failed");
     } else {
-        qDebug() << "File saved";
+        messageBox.information(nullptr, "Success", "File saved");
     }
+    messageBox.setFixedSize(500,200);
 
 }
 

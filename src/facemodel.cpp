@@ -1,5 +1,4 @@
 #include "facemodel.h"
-#include <QDebug>
 #include<QDateTime>
 
 FaceModel::FaceModel(double id, double time, QString name)

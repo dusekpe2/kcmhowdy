@@ -1,20 +1,8 @@
 #include "modelwidget.h"
 #include "ui_modelwidget.h"
-#include <QProcess>
-#include <QStandardItemModel>
-#include <QTextStream>
 #include <QSignalMapper>
 #include <QMessageBox>
-#include <QDebug>
-#include <QDate>
-#include <QSortFilterProxyModel>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QTableWidgetItem>
 #include <KAuth>
-#include <KConfigGroup>
-#include <QState>
 
 ModelWidget::ModelWidget(const QString userName, const KSharedConfigPtr &config, const QString modelsFileName, QWidget *parent) :
     QWidget(parent),
@@ -62,11 +50,9 @@ void ModelWidget::handleClearButton()
         job->exec();
 
         if (job->error()){
-            qDebug() << "Clear Failed";
-            qDebug() << job->errorString();
-            qDebug() << job->errorText();
-        } else {
-            qDebug() << "Cleared";
+            QMessageBox errorMessageBox;
+            errorMessageBox.critical(0,"Error", job->errorString());
+            errorMessageBox.setFixedSize(500,200);
         }
     }
 
@@ -89,7 +75,6 @@ QString ModelWidget::showDialog(QString name, QString message)
 void ModelWidget::handleRemoveButton(int id)
 {
 
-    qDebug()<<"Remove: "<<id<<endl;
     QString answer = this->showDialog("Remove", "Remove model with id " + QString::number(id) + "?");
 
     if(answer == "y")
@@ -108,16 +93,12 @@ void ModelWidget::handleRemoveButton(int id)
 
         job->exec();
 
+        QMessageBox messageBox;
+
         if (job->error()){
-            qDebug() << "Save Failed";
-            qDebug() << job->errorString();
-            qDebug() << job->errorText();
-        } else {
-            qDebug() << "File saved";
-
-            updateTable();
+            messageBox.critical(nullptr, "Error", job->errorString());
+            messageBox.setFixedSize(500,200);
         }
-
     }
 }
 
@@ -141,14 +122,6 @@ void ModelWidget::save()
     auto job = saveAction.execute();
 
     job->exec();
-
-    if (job->error()){
-            qDebug() << "Save Failed";
-            qDebug() << job->errorString();
-            qDebug() << job->errorText();
-    } else {
-        qDebug() << "File saved";
-    }
 
 }
 
@@ -186,7 +159,6 @@ void ModelWidget::updateTable()
 
              QSignalMapper *mapper = new QSignalMapper();
 
-            qDebug()<<mFacesModel.at(i).getId()<<endl;
              connect(delButton, SIGNAL(clicked()), mapper, SLOT(map()));
              mapper->setMapping(delButton, mFacesModel.at(i).getId().toInt());
              connect(mapper, SIGNAL(mapped(int)), this, SLOT(handleRemoveButton(int)));

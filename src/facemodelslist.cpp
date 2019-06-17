@@ -1,9 +1,6 @@
 #include "facemodelslist.h"
-#include <QDebug>
-#include <QAbstractItemView>
 #include <QJsonDocument>
 #include <QJsonArray>
-#include <QDateTime>
 
 FaceModelsList::FaceModelsList(QString fileName, QObject *parent) :
     QAbstractTableModel(parent)
@@ -18,11 +15,11 @@ FaceModel FaceModelsList::at(int position)
     return mFaceModels.at(position);
 }
 
-int FaceModelsList::rowCount(const QModelIndex &parent) const
+int FaceModelsList::rowCount(const QModelIndex & /*unused*/) const
 {
     return mFaceModels.size();
 }
-int FaceModelsList::columnCount(const QModelIndex &parent) const
+int FaceModelsList::columnCount(const QModelIndex & /*unused*/) const
 {
     return 4;
 }
@@ -73,9 +70,9 @@ QVariant FaceModelsList::headerData(int section, Qt::Orientation orientation, in
 
 bool FaceModelsList::updateData()
 {
-    removeRows(0, 1);
-    mFaceModels.clear();
     beginResetModel();
+    mFaceModels.clear();
+    endResetModel();
 
     QString fileContent;
 
@@ -85,36 +82,37 @@ bool FaceModelsList::updateData()
         {
             return false;
         }
-    }
 
-    fileContent = mFile.readAll();
-    mFile.close();
+        fileContent = mFile.readAll();
+        mFile.close();
 
-    QJsonDocument document = QJsonDocument::fromJson(fileContent.toUtf8());
+        QJsonDocument document = QJsonDocument::fromJson(fileContent.toUtf8());
 
-    if(document.isArray()){
-        QJsonArray models= document.array();
+        if(document.isArray()){
+            QJsonArray models= document.array();
 
-        for(int i = 0; i<models.size(); i++)
-        {
+            for(int i = 0; i<models.size(); i++)
+            {
 
-            double id = models.at(i)["id"].toDouble();
-            double time = models.at(i)["time"].toDouble();
-            QString name = models.at(i)["label"].toString();
+                double id = models.at(i)["id"].toDouble();
+                double time = models.at(i)["time"].toDouble();
+                QString name = models.at(i)["label"].toString();
 
-            FaceModel model(id, time, name);
+                FaceModel model(id, time, name);
 
-            mFaceModels.append(model);
+                mFaceModels.append(model);
+
+            }
 
 
+            return true;
+
+        } else {
+
+            return false;
         }
 
-        endResetModel();
-
-
-        return true;
-    } else {
-        return false;
     }
 
+    return false;
 }

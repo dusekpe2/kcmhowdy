@@ -2,14 +2,13 @@
 
 #include <QHBoxLayout>
 #include <QTabWidget>
-
+#include <QMessageBox>
 #include <KPluginFactory>
 
 #include <KAboutData>
 
 #include <KLocalizedString>
 #include "config.h"
-#include <QDebug>
 
 K_PLUGIN_FACTORY(howdyConfigFactory, registerPlugin<KcmHowdy>();)
 
@@ -29,7 +28,16 @@ KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
     connect(&mDataWatcher, SIGNAL(fileChanged(QString)), this, SLOT(updateTable()));
     connect(&mDataWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(addPath()));
 
-    mConfigWatcher.addPath(mHowdyConfig->name());
+    bool configFound = mConfigWatcher.addPath(mHowdyConfig->name());
+
+    if(!configFound)
+    {
+        QMessageBox errorMessageBox;
+        errorMessageBox.critical(0,"Error", "Howdy config file not found\n Location is " + HOWDY_CONFIG_FILE);
+        errorMessageBox.setFixedSize(700,300);
+
+    }
+
     connect(&mConfigWatcher, SIGNAL(fileChanged(QString)), this, SLOT(load()));
 
 //    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),

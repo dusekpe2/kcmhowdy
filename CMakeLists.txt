@@ -1,4 +1,8 @@
+project(kcm-howdy)
 cmake_minimum_required(VERSION 3.12)
+
+set(QT_MIN_VERSION "5.11.0")
+set(KF5_MIN_VERSION "5.50.0")
 
 include(CheckCXXCompilerFlag)
 
@@ -22,9 +26,6 @@ find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
 SET(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
-# Create code from a list of Qt designer ui files
-#set(CMAKE_AUTOUIC ON)
-
 include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
@@ -40,12 +41,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     ConfigWidgets
     Archive
 )
-#FIND_PACKAGE(KF5ConfigWidgets REQUIRED)
-#FIND_PACKAGE(KF5CoreAddons REQUIRED)
-#FIND_PACKAGE(KF5I18n REQUIRED)
-
-#SET(PLUGIN_INSTALL_DIR "/usr/lib/x86_64-linux-gnu/qt5/plugins")
-#SET(SERVICES_INSTALL_DIR "/usr/share/kservices5")
 
 install(FILES   kcm_howdy.desktop  DESTINATION ${SERVICES_INSTALL_DIR} )
 
@@ -58,8 +53,5 @@ kauth_install_helper_files(kcmhowdy_authhelper org.kde.kcontrol.kcmhowdy root)
 install(TARGETS kcmhowdy_authhelper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 
 add_subdirectory(src)
-
-#INSTALL(TARGETS howdy          DESTINATION ${PLUGIN_INSTALL_DIR})
-
 
 

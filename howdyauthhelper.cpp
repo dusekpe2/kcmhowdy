@@ -41,34 +41,51 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         QString modelName = args["modelName"].toString();
 
         QString dpkg_command = args["command"].toString() + args["modelId"].toString() + " --user " + args["user"].toString();
-        QProcess *myProcess = new QProcess(this);
-        myProcess->start(dpkg_command);
-        myProcess->waitForStarted();
-        myProcess->waitForReadyRead();
+        QProcess *proccessToStart = new QProcess(this);
+        proccessToStart->start(dpkg_command);
+        proccessToStart->waitForStarted();
+        proccessToStart->waitForReadyRead();
 
-        QString output(myProcess->readAllStandardOutput());
+        if(proccessToStart->exitCode())
+        {
+            auto errorReplyAction = ActionReply::HelperErrorReply();
+            errorReplyAction.addData("message", "Howdy is not installed");
+            return errorReplyAction;
+        }
+
+        QString output(proccessToStart->readAllStandardOutput());
 
         QTextStream out(stdout);
         out<<output<<endl;
 
         if(modelName.isNull()){
-            myProcess->write("y");
+            proccessToStart->write("y");
         } else {
-            myProcess->write(modelName.toLatin1());
+            proccessToStart->write(modelName.toLatin1());
         }
 
 
-        myProcess->waitForBytesWritten();
-        myProcess->closeWriteChannel();
-        myProcess->waitForFinished();
+        proccessToStart->waitForBytesWritten();
+        proccessToStart->closeWriteChannel();
+        proccessToStart->waitForFinished();
+
+        if(proccessToStart->exitCode())
+        {
+            auto errorReplyAction = ActionReply::HelperErrorReply();
+            QVariantMap retdata;
+               retdata["message"] = "Camera not set correctly";
+//            errorReplyAction.addData("message", "Camera not set correctly");
+               errorReplyAction.setData(retdata);
+            return errorReplyAction;
+        }
 
         qDebug()<<output<<endl;
         QVariantMap retdata;
            retdata["message"] = output;
 
-        auto rc = ActionReply::SuccessReply();
-        rc.setData(retdata);
-        return rc;
+        auto successReplyAction = ActionReply::SuccessReply();
+        successReplyAction.setData(retdata);
+        return successReplyAction;
 
 }
 

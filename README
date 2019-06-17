@@ -14,34 +14,17 @@ sudo apt-get install qt5-default
 -------------------------------
 
 KF5
-----------------------------
-sudo apt-get install build-essential pkg-config \
- libavformat-dev libavdevice-dev frei0r-plugins-dev  frei0r-plugins libgtk2.0-dev libexif-dev \
- libsdl2-dev libsox-dev libxml2-dev \
- ladspa-sdk libcairo2-dev libswscale-dev qtscript5-dev libqt5svg5-dev \
- libqt5opengl5-dev libepoxy-dev libeigen3-dev libfftw3-dev \
- git  yasm libtool automake   autoconf  libtool-bin  libtheora-bin  libtheora-dev \
- intltool swig libmp3lame-dev libgavl-dev libsamplerate0-dev   libjack-dev  libsoup2.4-dev   \
- python-dev  libkf5crash-dev  libkf5filemetadata-dev
+-----------------------------------------------------------------------------------
+sudo apt-get install libkf5archive-dev libkf5coreaddons-dev libkf5configwidgets-dev
+-----------------------------------------------------------------------------------
 
-
-sudo apt-get install \
- libkf5archive-dev libkf5bookmarks-dev libkf5coreaddons-dev libkf5config-dev \
- libkf5configwidgets-dev libkf5dbusaddons-dev libkf5kio-dev libkf5widgetsaddons-dev \
- libkf5notifyconfig-dev libkf5newstuff-dev libkf5xmlgui-dev libkf5declarative-dev \
- libkf5notifications-dev libkf5guiaddons-dev libkf5textwidgets-dev libkf5iconthemes-dev \
- kdoctools-dev libkf5crash-dev libkf5filemetadata-dev extra-cmake-modules \
- libsm-dev cmake qtdeclarative5-dev kde-runtime kinit  kio \
- qml-module-qtquick-controls
-----------------------------
-
-Qt5webkit
---------------------
-sudo apt-get install libqt5webkit5-dev
-------------------------
-
--------------------------------------
+Instalation
+------------------------------------------------------
 mkdir build
+
 cd build
+
 cmake .. -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix`
+
 sudo make install
+------------------------------------------------------

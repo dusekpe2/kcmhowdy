@@ -1,3 +1,11 @@
+Kcm howdy
+===========
+
+Systemd control module for KDE Plasma 5. Provides a graphical frontend for the Howdy
+project, which allows authentication to system through face recognition.
+Integrates in the System Settings dialogue in KDE Plasma 5.
+
+
 Installation
 ------------
     mkdir build  
@@ -6,34 +14,16 @@ Installation
     make  
     make install  
 
+Dependencies
+------------
+*   Qt >= 5.11
+*   KF5Auth
+*   KF5ConfigWidgets
 
-ECM
--------------------------------
-git clone git://anongit.kde.org/extra-cmake-modules
-cd extra-cmake-modules
-mkdir build && cd build    
-cmake ..
-make && sudo make install 
------------------------------
+Execution
+---------
+Kcm howdy can be accessed through System Settings, or by issuing the command:
+`kcmshell5 kcm_howdy`
 
-
-Qt5
------------------------------
-sudo apt-get install qt5-default
--------------------------------
-
-KF5
------------------------------------------------------------------------------------
-sudo apt-get install libkf5archive-dev libkf5coreaddons-dev libkf5configwidgets-dev
------------------------------------------------------------------------------------
-
-Instalation
-------------------------------------------------------
-mkdir build
-
-cd build
-
-cmake .. -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix`
-
-sudo make install
-------------------------------------------------------
+Developed by:
+* Petr Dusek <dusekpe2@fit.cvut.cz>

@@ -38,28 +38,6 @@ KcmHowdy::KcmHowdy(QWidget *parent, const QVariantList &args) :
 
     connect(&mConfigWatcher, SIGNAL(fileChanged(QString)), this, SLOT(load()));
 
-//    KAboutData *aboutData = new KAboutData(QStringLiteral("howdy"),
-//                                       i18n("KDE howdy control module"),
-//                                       QStringLiteral(""),
-//                                       QString(),
-//                                       KAboutLicense::GPL,
-//                                       i18n("(c) 2019 Petr Dusek"));
-
-//    aboutData->addAuthor(i18n("Petr Dusek"),
-//                     QString(),
-//                     QStringLiteral("dusekpe2@fit.cvut.cz"));
-//    setAboutData(aboutData);
-
-
-//    mMainLayout = new QHBoxLayout(this);
-//    mMainLayout->setContentsMargins(0, 0, 0, 0);
-
-//    if (!mHowdyWidget) {
-//        mHowdyWidget = new Widget(this);
-//         mMainLayout->addWidget(mHowdyWidget);
-//    }
-//    connect(mHowdyWidget, SIGNAL(changed(bool)), SIGNAL(changed(bool)));
-
     prepareUi();
 }
 

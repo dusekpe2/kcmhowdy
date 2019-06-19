@@ -16,9 +16,10 @@ Installation
 
 Dependencies
 ------------
-*   Qt >= 5.11
-*   KF5Auth
-*   KF5ConfigWidgets
+*   Qt >= 5.11.0
+*   KF5Auth >= 5.50.0
+*   KF5ConfigWidgets >= 5.50.0
+*   cmake >= 3.12
 
 Execution
 ---------

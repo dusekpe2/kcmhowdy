@@ -27,13 +27,9 @@ BuildRequires: cmake >= 3.12
 BuildRequires: gcc-c++
 BuildRequires: kf5-filesystem
 BuildRequires: extra-cmake-modules >= 5.50.0
-BuildRequires: libQt5Core-devel >= 5.11.0
 BuildRequires: libQt5Widgets-devel >= 5.11.0
-BuildRequires: kcoreaddons-devel >= 5.50.0
-BuildRequires: ki18n-devel >= 5.50.0
 BuildRequires: kconfigwidgets-devel >= 5.50.0
-BuildRequires: karchive-devel >= 5.50.0
-BuildRequires: libKF5AuthCore5 >= 5.50.0
+BuildRequires: libKF5Auth5 >= 5.50.0
 Requires:	   howdy = 2.5.1
 %description
 A System Settings module for managing project Howdy - face authentication module.

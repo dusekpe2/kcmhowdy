@@ -22,6 +22,7 @@ DEPEND="
 "
 
 RDEPEND=" ${DEPEND}
+	=sys-auth/howdy-2.5.1
 "
 
 src_configure() {

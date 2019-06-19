@@ -11,14 +11,16 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 
-find_package(Qt5 ${QT_MIN_VERSION} COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS 
+    Widgets
+)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Auth
     ConfigWidgets
 )
 
-install(FILES   kcm_howdy.desktop  DESTINATION ${SERVICES_INSTALL_DIR} )
+install(FILES kcm_howdy.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 
 kauth_install_actions(org.kde.kcontrol.kcmhowdy kcm_howdy.actions)
 

@@ -6,8 +6,6 @@
 #include <KPluginFactory>
 
 #include <KAboutData>
-
-#include <KLocalizedString>
 #include "config.h"
 
 K_PLUGIN_FACTORY(howdyConfigFactory, registerPlugin<KcmHowdy>();)

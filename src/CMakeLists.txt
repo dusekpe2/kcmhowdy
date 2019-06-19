@@ -1,6 +1,6 @@
 configure_file(config.h.in config.h IMMEDIATE @ONLY)
 
-SET(KCM_HOWDY_SRCS
+set(KCM_HOWDY_SRCS
       kcmhowdy.cpp
       configwidget.cpp
       modelwidget.cpp
@@ -10,20 +10,19 @@ SET(KCM_HOWDY_SRCS
 )
 
 set(KCM_HOWDY_UI
-    ui/modelwidget.ui
-    ui/configwidget.ui
-    ui/addwidget.ui
+     ui/modelwidget.ui
+     ui/configwidget.ui
+     ui/addwidget.ui 
 )
 
-ki18n_wrap_ui(KCM_HOWDY_SRCS ${KCM_HOWDY_UI})
+qt5_wrap_ui(KCM_HOWDY_SRCS ${KCM_HOWDY_UI})
 add_library( kcm_howdy MODULE ${KCM_HOWDY_SRCS} )
 target_link_libraries( kcm_howdy
-                       KF5::CoreAddons
+     #                  KF5::CoreAddons
                        KF5::ConfigWidgets
-                       KF5::I18n
                        Qt5::Core
-                       Qt5::Widgets
-		       KF5::WidgetsAddons
+  #                     Qt5::Widgets
+#		       KF5::WidgetsAddons
 )
 
 install(TARGETS kcm_howdy DESTINATION ${PLUGIN_INSTALL_DIR})

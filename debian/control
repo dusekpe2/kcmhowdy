@@ -5,9 +5,8 @@ Maintainer: petr <dusekpe2@fit.cvut.cz>
 Build-Depends: 	cmake (>= 3.12),
 		debhelper (>= 11~),
 		extra-cmake-modules (>= 5.50.0~),
-		libkf5archive-dev (>= 5.50.0~),
-		libkf5coreaddons-dev (>= 5.50.0~),
 		libkf5configwidgets-dev (>= 5.50.0~),
+		libkf5auth-dev (>= 5.50.0~),
 		qtbase5-dev (>= 5.11.0~),
 		pkg-kde-tools (>= 0.15.28) 
 Standards-Version: 4.1.3

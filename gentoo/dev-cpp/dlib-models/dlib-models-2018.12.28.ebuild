@@ -5,8 +5,7 @@ EAPI=7
 
 DESCRIPTION="Trained models created by Davis King."
 HOMEPAGE="https://github.com/davisking/${PN}"
-SRC_URI="https://github.com/davisking/${PN}/archive/2018-12-28.tar.gz -> 
-${P}.tar.gz"
+SRC_URI=SRC_URI="https://files.pythonhosted.org/packages/cf/3b/4fd8c534f6c0d1b80ce0973d01331525538045084c73c153ee6df20224cf/${P}.tar.gz"
 
 LICENSE="CC0-1.0"
 SLOT="0"

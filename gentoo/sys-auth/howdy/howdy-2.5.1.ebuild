@@ -28,9 +28,6 @@ src_install() {
 	dosym ${D}/lib/security/${PN}/cli.py /usr/bin/howdy
 	fperms 0555 /lib/security/${PN}/cli.py
 
-#	if use ffmpeg ; then
-#		sed --in-place 's/recording_plugin = opencv/recording_plugin = ffmpeg/' ${D}/usr/lib/security/${P}/config.ini
-#	fi
 	dodoc ${WORKDIR}/${P}/LICENSE
 	dodoc ${WORKDIR}/${P}/README.md
 }

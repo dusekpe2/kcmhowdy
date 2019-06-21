@@ -16,4 +16,5 @@ Package: kcmhowdy
 Architecture: any
 Depends: howdy (=2.5.1), ${shlibs:Depends}, ${misc:Depends}
 Description: Howdy management tool for KDE Plasma 5.
- A System Settings module for managing project Howdy - face authentication module.
+ A System Settings module for managing project Howdy.
+ Howdy is face authentication module.

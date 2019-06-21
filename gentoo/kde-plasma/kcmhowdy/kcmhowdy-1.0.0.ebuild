@@ -5,8 +5,9 @@ EAPI=7
 
 inherit kde5
 
-FRAMEWORKS_MINIMAL ?= 5.50.0
-QT_MINIMAL ?= 5.11.0
+#KDE_FRAMEWORKS_MINIMAL=5.60.0
+#QT_MINIMAL=5.11.0
+#CMAKE_MIN_VERSION=3.12
 
 DESCRIPTION="KDE Plasma 5 control module for for Howdy"
 
@@ -22,6 +23,7 @@ DEPEND="
 	$(add_frameworks_dep kauth)
 	$(add_frameworks_dep kconfigwidgets)
 	$(add_qt_dep qtwidgets)
+	>=dev-util/cmake-3.12
 "
 
 RDEPEND=" ${DEPEND}

@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="dev-python/face_recognition_models"
+DEPEND="dev-cpp/dlib-models"
 RDEPEND="${DEPEND} 
 		${PYTHON_DEPS}
 		sci-libs/dlib[jpeg,png,python]

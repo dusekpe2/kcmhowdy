@@ -2,7 +2,7 @@ Source: kcmhowdy
 Section: kde
 Priority: optional
 Maintainer: petr <dusekpe2@fit.cvut.cz>
-Build-Depends: 	cmake (>= 3.12),
+Build-Depends: 	cmake (>= 3.11),
 		debhelper (>= 11~),
 		extra-cmake-modules (>= 5.50.0~),
 		libkf5configwidgets-dev (>= 5.50.0~),

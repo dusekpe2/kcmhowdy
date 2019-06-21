@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="dev-cpp/dlib-models"
-RDEPEND="${DEPEND} 
+RDEPEND="
 		${PYTHON_DEPS}
 		sci-libs/dlib[jpeg,png,python]
 		dev-python/numpy
@@ -37,8 +36,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "Place face recognition models from dev-python/face_recognition_models to"
-	elog "/usr/lib/security/${P}/dlib-data"
 	elog "Review settings in /usr/lib/security${D}/config.ini. Option device_path must be set to an existing device."
 	elog "Add PAM configuration to /etc/pam.d, e.g.:"
 	elog "auth sufficient pam_python.so /usr/lib/secutiry${P}/pam.py"

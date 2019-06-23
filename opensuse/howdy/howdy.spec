@@ -24,52 +24,41 @@ License:        MIT
 Group:          System/Libraries
 URL:            https://github.com/dusekpe2/%{name}
 Source0:        https://github.com/dusekpe2/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.gz
-#BuildRequires:  python3
-#BuildRequires:  wget
-#BuildRequires:       python3-pip
-#BuildRequires:       python3-setuptools
-#BuildRequires:       python3-opencv
-BuildRequires:       python3-devel
-BuildRequires:	python3-opencv
-Requires:	%{python_module opencv}
-#Requires:       pam-python
-#Requires:       cmake
-#Requires:       gcc-c++
-#Requires:       v4l-tools
+Requires:	python3
+Requires:   python3-dlib
+Requires:	python3-opencv
+Requires:	pam-python
+Requires:	python3-numpy
 
 %description
+Howdy provides Windows Hello™ style authentication for Linux.
 
 %prep
 %setup -q
-
-%build
-#nothing
 
 %install
 mkdir -p %{buildroot}/lib/security/%{name}
 cp -pr src/* %{buildroot}/lib/security/%{name}
 
-#sh %{buildroot}/lib/security/%{name}/dlib-data/install.sh
-#mv *.dat %{buildroot}/lib/security/%{name}/dlib-data
-
 mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
 install -Dm 644 autocomplete/%{name} %{buildroot}%{_datadir}/bash-completion/completions
 
 mkdir -p %{buildroot}%{_bindir}
-chmod +x %{buildroot}/lib/security/%{name}/cli.py
+chmod 0755 %{buildroot}/lib/security/%{name}/cli.py
 ln -s /lib/security/howdy/cli.py %{buildroot}%{_bindir}/%{name}
 
-#%post
-#pip3 install --upgrade pip
-#pip3 install opencv-python
-#pip3 install dlib 
+%post
+echo "Review settings in /usr/lib/security${D}/config.ini. Option device_path must be set to an existing device."
+echo "Add PAM configuration to /etc/pam.d, e.g.:common-auth"
+echo "auth sufficient pam_python.so /usr/lib/secutiry${P}/pam.py"
+echo "This package requires environment variable ``SUDO_USER'' set even if ``sudo'' is not used."
+
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
 /lib/security
-#/lib/security/howdy
 %{_datadir}/bash-completion/completions/%{name}
 
 %changelog

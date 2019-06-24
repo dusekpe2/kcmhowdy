@@ -30,7 +30,7 @@ void AddWidget::handleAddButton()
     args["modelName"] = ui->lineEdit->text();
 
 
-    args["command"] = "sudo howdy add ";
+    args["command"] = "howdy add ";
 
     args[QStringLiteral("user")] = actualUserName;
 

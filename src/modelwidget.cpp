@@ -38,7 +38,7 @@ void ModelWidget::handleClearButton()
 
         QVariantMap args;
 
-        args["command"] = "sudo howdy clear ";
+        args["command"] = "howdy clear ";
         args[QStringLiteral("user")] = mActualUserName;
 
         KAuth::Action getModelsAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.startcommand"));
@@ -82,7 +82,7 @@ void ModelWidget::handleRemoveButton(int id)
 
         QVariantMap args;
 
-        args["command"] = "sudo howdy remove ";
+        args["command"] = "howdy remove ";
         args[QStringLiteral("user")] = mActualUserName;
         args[QStringLiteral("modelId")] = id;
         KAuth::Action saveAction(QStringLiteral("org.kde.kcontrol.kcmhowdy.startcommand"));

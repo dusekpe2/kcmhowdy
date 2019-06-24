@@ -37,9 +37,19 @@ ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 
 ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
 {
+	QString dpkg_command = "";
+	
+	QProcess *testSudo = new QProcess(this);
+	testSudo->start("sudo");
+	testSudo->waitForFinished();
+
+	if(testSudo->exitCode() != 127){
+		dpkg_command += "sudo ";
+	}
+
         QString modelName = args["modelName"].toString();
 
-        QString dpkg_command = args["command"].toString() + args["modelId"].toString() + " --user " + args["user"].toString();
+        dpkg_command += args["command"].toString() + args["modelId"].toString() + " --user " + args["user"].toString();
 
         if(modelName.isNull() || modelName.isEmpty()){
             dpkg_command += " -y";

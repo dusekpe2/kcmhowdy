@@ -5,10 +5,6 @@ EAPI=7
 
 inherit kde5
 
-#KDE_FRAMEWORKS_MINIMAL=5.60.0
-#QT_MINIMAL=5.11.0
-#CMAKE_MIN_VERSION=3.12
-
 DESCRIPTION="KDE Plasma 5 control module for for Howdy"
 
 HOMEPAGE="https://github.com/dusekpe2/${PN}.git"

@@ -19,7 +19,8 @@ RDEPEND="
 		${PYTHON_DEPS}
 		sci-libs/dlib[jpeg,png,python]
 		dev-python/numpy
-		media-libs/opencv[python,v4l]"
+		media-libs/opencv[python,v4l]
+		sys-auth/pam-python"
 
 
 src_install() {
@@ -34,7 +35,7 @@ src_install() {
 
 pkg_postinst() {
 	elog "Review settings in /usr/lib/security${D}/config.ini. Option device_path must be set to an existing device."
-	elog "Add PAM configuration to /etc/pam.d, e.g.:"
+	elog "Add PAM configuration to /etc/pam.d, e.g.: system-auth"
 	elog "auth sufficient pam_python.so /usr/lib/secutiry${P}/pam.py"
 	ewarn "This package requires environment variable ``SUDO_USER'' set even if ``sudo'' is not used."
 }

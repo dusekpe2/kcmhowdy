@@ -8,7 +8,7 @@ inherit kde5
 DESCRIPTION="KDE Plasma 5 control module for for Howdy"
 
 HOMEPAGE="https://github.com/dusekpe2/${PN}.git"
-SRC_URI="https://github.com/dusekpe2/${PN}/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/dusekpe2/${PN}/archive/${PV}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"

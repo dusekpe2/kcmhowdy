@@ -5,7 +5,7 @@
 #include <KSharedConfig>
 #include <KConfig>
 #include <KConfigGroup>
-
+#include <QDebug>
 ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 {
     KSharedConfigPtr howdyConfig = KSharedConfig::openConfig(args[QStringLiteral("conf")].toString());
@@ -38,13 +38,16 @@ ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
 {
 	QString dpkg_command = "";
-	
 	QProcess *testSudo = new QProcess(this);
 	testSudo->start("sudo");
 	testSudo->waitForFinished();
-
-	if(testSudo->exitCode() != 127){
+	if(testSudo->exitCode() == 1){
 		dpkg_command += "sudo ";
+	} else {
+	      auto errorReplyAction = ActionReply::HelperErrorReply();
+              errorReplyAction.setErrorDescription("Sudo must be installed");
+              return errorReplyAction;
+	
 	}
 
         QString modelName = args["modelName"].toString();
@@ -54,7 +57,7 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         if(modelName.isNull() || modelName.isEmpty()){
             dpkg_command += " -y";
         }
-
+	qDebug()<<dpkg_command;
         QProcess *proccessToStart = new QProcess(this);
         proccessToStart->start(dpkg_command);
         proccessToStart->waitForStarted();
@@ -63,7 +66,7 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         if(proccessToStart->exitCode())
         {
             auto errorReplyAction = ActionReply::HelperErrorReply();
-            errorReplyAction.setErrorDescription("Howdy is not installed");
+            errorReplyAction.setErrorDescription("Howdy is not installed correctly");
             return errorReplyAction;
         }
 
@@ -81,6 +84,7 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         QString replyFromCommand(proccessToStart->readAllStandardOutput());
 
         QStringList linesofReply = replyFromCommand.split("\n");
+		   qDebug()<<linesofReply;
 
         QString replyMessage = linesofReply.at(linesofReply.size()-2);
 

@@ -5,6 +5,11 @@
 
 using namespace KAuth;
 
+/**
+ * Auth helper class header.
+ * This class is needed and is known as helper, which can start commands as root
+ * 
+ **/
 class HowdyAuthHelper : public QObject
 {
     Q_OBJECT

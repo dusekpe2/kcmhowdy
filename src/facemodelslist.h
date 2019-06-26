@@ -7,7 +7,7 @@
 
 /**
  * Class, which inherits from QAbstractTableModel
- * It contains List of face models and updates data from JSON file located in mFile variable
+ * It contains List of face models and updates data from JSON file
  * 
  **/
 class FaceModelsList : public QAbstractTableModel

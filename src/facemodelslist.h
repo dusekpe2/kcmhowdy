@@ -5,6 +5,11 @@
 #include <KAuth>
 #include <QFile>
 
+/**
+ * Class, which inherits from QAbstractTableModel
+ * It contains List of face models and updates data from JSON file located in mFile variable
+ * 
+ **/
 class FaceModelsList : public QAbstractTableModel
 {
     Q_OBJECT

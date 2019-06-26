@@ -68,7 +68,6 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         if(modelName.isNull() || modelName.isEmpty()){
             dpkg_command += " -y";
         }
-	qDebug()<<dpkg_command;
         QProcess *proccessToStart = new QProcess(this);
         proccessToStart->start(dpkg_command);
         proccessToStart->waitForStarted();
@@ -95,7 +94,6 @@ ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
         QString replyFromCommand(proccessToStart->readAllStandardOutput());
 
         QStringList linesofReply = replyFromCommand.split("\n");
-		   qDebug()<<linesofReply;
 
         QString replyMessage = linesofReply.at(linesofReply.size()-2);
 

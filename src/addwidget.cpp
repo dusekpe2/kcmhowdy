@@ -6,6 +6,12 @@
 
 const int MAX_LENGTH = 24;
 
+/**
+ *  Constructor.
+ *  Sets UI and max length of lineEdit.
+ * Also connects signal from pushButton to slot handleAddButton
+ * 
+ **/
 AddWidget::AddWidget(const QString userName, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AddWidget),
@@ -18,11 +24,24 @@ AddWidget::AddWidget(const QString userName, QWidget *parent) :
     connect(ui->pushButtonAdd, SIGNAL(clicked()), this, SLOT(handleAddButton()));
 }
 
+/**
+ * Destructor.
+ * Deletes ui
+ * 
+ **/
 AddWidget::~AddWidget()
 {
     delete ui;
 }
 
+/**
+ * This function is handling add button, when is clicked.
+ * It gets name of model from lineEdit and send command "howdy add" with name of model to the helper.
+ * It also shows MessageBox, which inform users to Look at the camera.
+ * If there is some error in Helper function shows error MessageBox
+ * If there is success message from Helper it also shows MessageBox telling user about success.
+ * 
+ **/
 void AddWidget::handleAddButton()
 {
     QVariantMap args;

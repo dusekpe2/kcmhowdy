@@ -3,7 +3,9 @@
 
 #include <QStandardItemModel>
 
-
+/**
+ * Class for model of face 
+ **/
 class FaceModel
 {
 public:

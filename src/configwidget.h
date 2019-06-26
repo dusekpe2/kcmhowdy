@@ -15,6 +15,11 @@ namespace Ui {
 class ConfigWidget;
 }
 
+/**
+ * Class, which secures adding and loading from konfiguration files of Howdy. 
+ * 
+ * 
+ **/
 class ConfigWidget : public QWidget
 {
     Q_OBJECT

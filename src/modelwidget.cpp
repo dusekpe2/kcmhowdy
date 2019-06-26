@@ -4,6 +4,11 @@
 #include <QMessageBox>
 #include <KAuth>
 
+/**
+ * Constructor
+ * sets UI, updates Table and prepares UI
+ * 
+ **/
 ModelWidget::ModelWidget(const QString userName, const KSharedConfigPtr &config, const QString modelsFileName, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModelWidget),
@@ -17,18 +22,32 @@ ModelWidget::ModelWidget(const QString userName, const KSharedConfigPtr &config,
     updateTable();
 }
 
+/**
+ * Destructor
+ * Deletes UI
+ * 
+ **/
 ModelWidget::~ModelWidget()
 {
     delete ui;
 
 }
 
+/**
+ * Emits signal changed
+ * It is called when check box is clicked
+ * 
+ **/
 void ModelWidget::hasChanged()
 {
     Q_EMIT changed(true);
 }
 
-
+/**
+ * This function handles clear button when clicked
+ * it starts HowdyAuthHelper and send it command "howdy clear" with name of actual user
+ * shows error message when something went wrong
+ **/
 void ModelWidget::handleClearButton()
 {
 
@@ -58,6 +77,12 @@ void ModelWidget::handleClearButton()
 
 }
 
+/**
+ * This function shows dialog to user.
+ * He choose yes or now.
+ * It is called by function handleClearButton
+ * 
+ **/
 QString ModelWidget::showDialog(QString name, QString message)
 {   
     QMessageBox::StandardButton reply;
@@ -72,6 +97,13 @@ QString ModelWidget::showDialog(QString name, QString message)
 
 }
 
+/**
+ * Handles remove button when is clicked
+ * When button in table is clicked it shows dialog if user wants to remove model
+ * If user choose yeas it starts HowdyAuthHelper and send him command "howdy remove" with id of model to be removed
+ * When something went wrong it shows MessageBox with error mesage
+ * 
+ **/
 void ModelWidget::handleRemoveButton(int id)
 {
 
@@ -102,6 +134,11 @@ void ModelWidget::handleRemoveButton(int id)
     }
 }
 
+/**
+ * This function handles check box when is clicked.
+ * Also starts function hasChanged, which emits signal changed
+ * 
+ **/
 void ModelWidget::handleCheckBox(bool state)
 {
     mIsEnabled = state;
@@ -109,6 +146,12 @@ void ModelWidget::handleCheckBox(bool state)
 
 }
 
+/**
+ * This function saves new data to configuration file 
+ * It is used because of check box for allow or disable howdy 
+ * which is located in configuration file.
+ * 
+ **/
 void ModelWidget::save()
 {
     QVariantMap args;
@@ -125,12 +168,21 @@ void ModelWidget::save()
 
 }
 
+/**
+ * Loads check box state from configuration file
+ * 
+ **/
 void ModelWidget::load()
 {
     mIsEnabled = (mConfig->entryMap(CORE)[DISABLED] =="false");
     ui->checkAllow->setChecked(mIsEnabled);
 }
 
+/**
+ * Prepares UI
+ * add tableview model and connects signal for clear button
+ * 
+ **/
 void ModelWidget::prepareUi()
 {
 
@@ -144,6 +196,13 @@ void ModelWidget::prepareUi()
 
 }
 
+/**
+ * This function updates table.
+ * It calls updateData from class mFaceModelsList and updates table.
+ * It also creates delete buttons in rows of table and connect signals from them
+ * to function handleRemoveButton
+ * 
+ **/
 void ModelWidget::updateTable()
 {
     if(mFacesModel.updateData())

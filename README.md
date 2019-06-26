@@ -6,13 +6,26 @@ project, which allows authentication to system through face recognition.
 Integrates in the System Settings dialogue in KDE Plasma 5.
 
 
-Installation
+Installation with cmake and make
 ------------
     mkdir build  
     cd build  
     cmake .. -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix` ..  
     make  
     make install  
+    
+Create Debian package
+------------
+    dpkg-buildpackage -uc -us
+    
+Create OpenSUSE package for kcm module and howdy
+------------
+    rpmbuild -ba howdy.spec
+    rpmbuild -ba kcmhowdy.spec   
+
+Create ebuild Gentoo
+------------
+    ebuild EBUILD_FILENAME manifest clean merge
 
 Dependencies
 ------------

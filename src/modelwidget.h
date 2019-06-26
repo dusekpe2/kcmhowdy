@@ -14,6 +14,12 @@ namespace Ui {
 class ModelWidget;
 }
 
+/**
+ * Class for ModelWidget tab
+ * It shows table with face models
+ * User can clear or delete models and allow or disable Howdy
+ * 
+ **/
 class ModelWidget : public QWidget
 {
     Q_OBJECT

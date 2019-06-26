@@ -2,6 +2,12 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 
+/**
+ * Constructor
+ * Gets filename in parameter and QObject as parent
+ * Parameter filename is used as name of file where is located data.
+ * 
+ **/
 FaceModelsList::FaceModelsList(QString fileName, QObject *parent) :
     QAbstractTableModel(parent)
 {
@@ -10,20 +16,38 @@ FaceModelsList::FaceModelsList(QString fileName, QObject *parent) :
 
 }
 
+/**
+ * Getter, return FaceModel at exact position
+ * 
+ **/
 FaceModel FaceModelsList::at(int position)
 {
     return mFaceModels.at(position);
 }
 
+/**
+ * Getter, number of FaceModels in List
+ * 
+ **/
 int FaceModelsList::rowCount(const QModelIndex & /*unused*/) const
 {
     return mFaceModels.size();
 }
+
+/**
+ * Getter, number of columns.
+ * Is always 4, because of columns - id, date, name and delete button
+ * 
+ **/
 int FaceModelsList::columnCount(const QModelIndex & /*unused*/) const
 {
     return 4;
 }
 
+/**
+ * Return data of columns and other stuff.
+ * 
+ **/
 QVariant FaceModelsList::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
@@ -51,6 +75,11 @@ QVariant FaceModelsList::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+/**
+ * Return data of header.
+ * It is always id, date, name and delete
+ * 
+ **/
 QVariant FaceModelsList::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(role ==Qt::DisplayRole && orientation == Qt::Horizontal){
@@ -68,6 +97,12 @@ QVariant FaceModelsList::headerData(int section, Qt::Orientation orientation, in
     return QVariant();
 }
 
+/**
+ * This function updates data from JSON file
+ * return true if everything went well
+ * return false if there is some error
+ * 
+ **/
 bool FaceModelsList::updateData()
 {
     beginResetModel();

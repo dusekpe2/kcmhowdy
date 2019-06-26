@@ -22,7 +22,7 @@ Release:        0
 Summary:        KCM module for prooject Howdy
 License:        GPLv2
 Group:          System/Libraries
-Source0:		%{name}-%{version}.tar.gz
+Source0:		https://github.com/dusekpe2/%{name}/%{version}.tar.gz
 BuildRequires: cmake >= 3.12
 BuildRequires: gcc-c++
 BuildRequires: kf5-filesystem

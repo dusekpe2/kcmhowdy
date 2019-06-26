@@ -8,6 +8,10 @@ namespace Ui {
 class AddWidget;
 }
 
+/**
+ * Class AddWidget.
+ * Secures adding new face model to program Howdy
+ **/
 class AddWidget : public QWidget
 {
     Q_OBJECT

@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 
 
-%{?!python_module:%define python_module() python-%{**} python3-%{**}}
+%{?!python_module:%define python_module() python3-%{**}}
 Name:           python-dlib
 Version:        19.17.0
 Release:        0
-License:        BSL-1.0
+License:        GPLv2
 Summary:        A toolkit for making real world machine learning and data analysis applications
 Url:            https://github.com/davisking/dlib
 Group:          Development/Languages/Python

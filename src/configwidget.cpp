@@ -7,6 +7,11 @@
 #include <KAuth>
 #include <QStringLiteral>
 
+/**
+ * Constructor. 
+ * Sets UI.
+ * Connects all signals from elements in UI for konfiguration file to slot hasChanged.
+ **/
 ConfigWidget::ConfigWidget(const KSharedConfigPtr &config, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ConfigWidget),
@@ -40,11 +45,21 @@ ConfigWidget::ConfigWidget(const KSharedConfigPtr &config, QWidget *parent) :
      connect(ui->comboEndReport, SIGNAL(currentTextChanged(QString)), this, SLOT(hasChanged()));
 }
 
+/**
+ * Destructor 
+ * Deletes UI
+ * 
+ **/
 ConfigWidget::~ConfigWidget()
 {
     delete ui;
 }
 
+/**
+ * This function is started when Widgets needs to load.
+ * Function loads data from konfiguration file and save it to UI elements.
+ * 
+ **/
 void ConfigWidget::load()
 {
     mConfig->reparseConfiguration();
@@ -73,6 +88,10 @@ void ConfigWidget::load()
     changed(false);
 }
 
+/**
+ * This function handling choose button for selecting path to camera
+ * Shows dialog with files, where user can choose a file with camera.
+ **/
 void ConfigWidget::chooseButtonClicked()
 {
     QFileDialog dialog;
@@ -92,6 +111,11 @@ void ConfigWidget::chooseButtonClicked()
         }
 }
 
+/**
+ * This function saves values from UI elements to configuration file.
+ * It calls HowdyAuthHelper, which needs admin privileges to run.
+ * It also shows MessageBox with error if something went wrong or with success.
+ **/
 void ConfigWidget::save()
 {
 
@@ -139,6 +163,10 @@ void ConfigWidget::save()
 
 }
 
+/**
+ * If something in class changed signal changed is sent.
+ * 
+ **/
 void ConfigWidget::hasChanged()
 {
     Q_EMIT changed(true);

@@ -18,7 +18,7 @@ Create Debian package
 ------------
     dpkg-buildpackage -uc -us
     
-Create OpenSUSE package for kcm module and howdy
+Create OpenSUSE package for KCM module and Howdy
 ------------
     rpmbuild -ba howdy.spec
     rpmbuild -ba kcmhowdy.spec   

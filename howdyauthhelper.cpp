@@ -5,7 +5,12 @@
 #include <KSharedConfig>
 #include <KConfig>
 #include <KConfigGroup>
-#include <QDebug>
+
+/**
+ * This function is started as admin and writes flags values to the configuration file of Howdy.
+ * Values to be written is getted in parameter QVariantMap *args
+ * 
+ **/
 ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 {
     KSharedConfigPtr howdyConfig = KSharedConfig::openConfig(args[QStringLiteral("conf")].toString());
@@ -35,6 +40,12 @@ ActionReply HowdyAuthHelper::save(const QVariantMap &args)
 
 }
 
+/**
+ * This function is started as admin and starts command, which is sent in parameter
+ * QVariantMap &args.
+ * Function checks if sudo is installed and if command, which was sent finished good.
+ * If not it returns an Error with description what was the error
+ **/
 ActionReply HowdyAuthHelper::startcommand(const QVariantMap &args)
 {
 	QString dpkg_command = "";

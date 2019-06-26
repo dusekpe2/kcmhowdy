@@ -17,12 +17,12 @@
 
 
 Name:           kcmhowdy
-Version:	1.0.0        
+Version:		1.0.0        
 Release:        0
 Summary:        KCM module for prooject Howdy
-License:        MIT
+License:        GPLv2
 Group:          System/Libraries
-Source0:	https://github.com/dusekpe2/%{name}/archive/v%{version}.tar.gz
+Source0:		%{name}-%{version}.tar.gz
 BuildRequires: cmake >= 3.12
 BuildRequires: gcc-c++
 BuildRequires: kf5-filesystem
@@ -31,11 +31,12 @@ BuildRequires: libQt5Widgets-devel >= 5.11.0
 BuildRequires: kconfigwidgets-devel >= 5.50.0
 BuildRequires: libKF5Auth5 >= 5.50.0
 Requires:	   howdy = 2.5.1
+
 %description
 A System Settings module for managing project Howdy - face authentication module.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %cmake_kf5 -d build
@@ -48,7 +49,7 @@ A System Settings module for managing project Howdy - face authentication module
 
 %files
 %{_kf5_plugindir}/
-%{_kf5_sysconfdir}/dbus-1/system.d/org.kde.kcontrol.kcmhowdy.conf
+%{_kf5_dbuspolicydir}/org.kde.kcontrol.kcmhowdy.conf
 %{_kf5_sharedir}/polkit-1/actions/org.kde.kcontrol.kcmhowdy.policy
 %{_kf5_sharedir}/dbus-1/system-services/org.kde.kcontrol.kcmhowdy.service
 %{_kf5_libdir}/libexec/

@@ -10,6 +10,10 @@
 #include "configwidget.h"
 #include "addwidget.h"
 
+/**
+ * Main class for KCM module 
+ * 
+ **/
 class KcmHowdy : public KCModule
 {
     Q_OBJECT
@@ -36,7 +40,6 @@ private:
 
 private:
     void prepareUi();
-    bool apply();
 };
 
 #endif // MODULE_H
